@@ -8,7 +8,7 @@ namespace UltimateTicTacToe.Core.Entities
 {
     public class Game
     {
-        public Players CurrentPlayer { get; set; }
+        public Players CurrentPlayer { get; set; } = Players.X;
 
         public Players?[,,,] Board { get; } = new Players?[3, 3, 3, 3];
 

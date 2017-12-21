@@ -96,5 +96,11 @@
   <ItemGroup>
     <Resource Include="ultimatetictactoe.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UltimateTicTacToe.Core\UltimateTicTacToe.Core.csproj">
+      <Project>{1af5b1fc-7d2f-4196-a131-878a4f6ed9f8}</Project>
+      <Name>UltimateTicTacToe.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
