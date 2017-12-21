@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:UltimateTicTacToe"
         mc:Ignorable="d"
         
-        Title="Ultimate Tic Tac Toe" Height="350" Width="525" Icon="ultimatetictactoe.ico" WindowStartupLocation="CenterScreen">
+        Title="Ultimate Tic Tac Toe" Height="500" Width="400" MinHeight="500" MinWidth="400" Icon="ultimatetictactoe.ico" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30" />
@@ -23,12 +23,13 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <Button Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Content="New Game" Margin="3" Width="100" VerticalAlignment="Center" HorizontalAlignment="Left" />
+        <Button Name="btnNewGame" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Content="New Game" Margin="3" Width="100" VerticalAlignment="Center" HorizontalAlignment="Left" Click="btnNewGame_Click" />
 
         <Label Name="lblPlayerX" Grid.Row="1" Grid.Column="0" Content="Player X" VerticalAlignment="Center" HorizontalAlignment="Center" />
         <Label Name="lblPlayerO" Grid.Row="1" Grid.Column="2" Content="Player O" VerticalAlignment="Center" HorizontalAlignment="Center" />
 
-        <Grid Grid.Row="2" Grid.Column="0" Margin="3">
+        <Grid Name="game00" Grid.Row="2" Grid.Column="0" Margin="3">
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
@@ -41,19 +42,20 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Row="0" Grid.Column="0" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="0" Grid.Column="1" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="0" Grid.Column="2" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="1" Grid.Column="0" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="1" Grid.Column="1" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="1" Grid.Column="2" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="2" Grid.Column="0" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="2" Grid.Column="1" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="2" Grid.Column="2" IsEnabled="False" Margin="1" />
+            <Button Name="btn00" Grid.Row="0" Grid.Column="0" Margin="1" Click="btn_Click" />
+            <Button Name="btn01" Grid.Row="0" Grid.Column="1" Margin="1" Click="btn_Click" />
+            <Button Name="btn02" Grid.Row="0" Grid.Column="2" Margin="1" Click="btn_Click" />
+            <Button Name="btn10" Grid.Row="1" Grid.Column="0" Margin="1" Click="btn_Click" />
+            <Button Name="btn11" Grid.Row="1" Grid.Column="1" Margin="1" Click="btn_Click" />
+            <Button Name="btn12" Grid.Row="1" Grid.Column="2" Margin="1" Click="btn_Click" />
+            <Button Name="btn20" Grid.Row="2" Grid.Column="0" Margin="1" Click="btn_Click" />
+            <Button Name="btn21" Grid.Row="2" Grid.Column="1" Margin="1" Click="btn_Click" />
+            <Button Name="btn22" Grid.Row="2" Grid.Column="2" Margin="1" Click="btn_Click" />
 
         </Grid>
 
-        <Grid Grid.Row="2" Grid.Column="1" Margin="3">
+        <Grid Name="game01" Grid.Row="2" Grid.Column="1" Margin="3">
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
@@ -66,19 +68,20 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Row="0" Grid.Column="0" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="0" Grid.Column="1" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="0" Grid.Column="2" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="1" Grid.Column="0" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="1" Grid.Column="1" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="1" Grid.Column="2" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="2" Grid.Column="0" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="2" Grid.Column="1" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="2" Grid.Column="2" IsEnabled="False" Margin="1" />
+            <Button Name="btn03" Grid.Row="0" Grid.Column="0" Margin="1" Click="btn_Click" />
+            <Button Name="btn04" Grid.Row="0" Grid.Column="1" Margin="1" Click="btn_Click" />
+            <Button Name="btn05" Grid.Row="0" Grid.Column="2" Margin="1" Click="btn_Click" />
+            <Button Name="btn13" Grid.Row="1" Grid.Column="0" Margin="1" Click="btn_Click" />
+            <Button Name="btn14" Grid.Row="1" Grid.Column="1" Margin="1" Click="btn_Click" />
+            <Button Name="btn15" Grid.Row="1" Grid.Column="2" Margin="1" Click="btn_Click" />
+            <Button Name="btn23" Grid.Row="2" Grid.Column="0" Margin="1" Click="btn_Click" />
+            <Button Name="btn24" Grid.Row="2" Grid.Column="1" Margin="1" Click="btn_Click" />
+            <Button Name="btn25" Grid.Row="2" Grid.Column="2" Margin="1" Click="btn_Click" />
 
         </Grid>
 
-        <Grid Grid.Row="2" Grid.Column="2" Margin="3">
+        <Grid Name="game02" Grid.Row="2" Grid.Column="2" Margin="3">
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
@@ -91,19 +94,20 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Row="0" Grid.Column="0" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="0" Grid.Column="1" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="0" Grid.Column="2" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="1" Grid.Column="0" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="1" Grid.Column="1" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="1" Grid.Column="2" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="2" Grid.Column="0" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="2" Grid.Column="1" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="2" Grid.Column="2" IsEnabled="False" Margin="1" />
+            <Button Name="btn06" Grid.Row="0" Grid.Column="0" Margin="1" Click="btn_Click" />
+            <Button Name="btn07" Grid.Row="0" Grid.Column="1" Margin="1" Click="btn_Click" />
+            <Button Name="btn08" Grid.Row="0" Grid.Column="2" Margin="1" Click="btn_Click" />
+            <Button Name="btn16" Grid.Row="1" Grid.Column="0" Margin="1" Click="btn_Click" />
+            <Button Name="btn17" Grid.Row="1" Grid.Column="1" Margin="1" Click="btn_Click" />
+            <Button Name="btn18" Grid.Row="1" Grid.Column="2" Margin="1" Click="btn_Click" />
+            <Button Name="btn26" Grid.Row="2" Grid.Column="0" Margin="1" Click="btn_Click" />
+            <Button Name="btn27" Grid.Row="2" Grid.Column="1" Margin="1" Click="btn_Click" />
+            <Button Name="btn28" Grid.Row="2" Grid.Column="2" Margin="1" Click="btn_Click" />
 
         </Grid>
 
-        <Grid Grid.Row="3" Grid.Column="0" Margin="3">
+        <Grid Name="game10" Grid.Row="3" Grid.Column="0" Margin="3">
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
@@ -116,19 +120,20 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Row="0" Grid.Column="0" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="0" Grid.Column="1" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="0" Grid.Column="2" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="1" Grid.Column="0" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="1" Grid.Column="1" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="1" Grid.Column="2" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="2" Grid.Column="0" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="2" Grid.Column="1" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="2" Grid.Column="2" IsEnabled="False" Margin="1" />
+            <Button Name="btn30" Grid.Row="0" Grid.Column="0" Margin="1" Click="btn_Click" />
+            <Button Name="btn31" Grid.Row="0" Grid.Column="1" Margin="1" Click="btn_Click" />
+            <Button Name="btn32" Grid.Row="0" Grid.Column="2" Margin="1" Click="btn_Click" />
+            <Button Name="btn40" Grid.Row="1" Grid.Column="0" Margin="1" Click="btn_Click" />
+            <Button Name="btn41" Grid.Row="1" Grid.Column="1" Margin="1" Click="btn_Click" />
+            <Button Name="btn42" Grid.Row="1" Grid.Column="2" Margin="1" Click="btn_Click" />
+            <Button Name="btn50" Grid.Row="2" Grid.Column="0" Margin="1" Click="btn_Click" />
+            <Button Name="btn51" Grid.Row="2" Grid.Column="1" Margin="1" Click="btn_Click" />
+            <Button Name="btn52" Grid.Row="2" Grid.Column="2" Margin="1" Click="btn_Click" />
 
         </Grid>
 
-        <Grid Grid.Row="3" Grid.Column="1" Margin="3">
+        <Grid Name="game11" Grid.Row="3" Grid.Column="1" Margin="3">
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
@@ -141,19 +146,20 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Row="0" Grid.Column="0" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="0" Grid.Column="1" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="0" Grid.Column="2" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="1" Grid.Column="0" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="1" Grid.Column="1" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="1" Grid.Column="2" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="2" Grid.Column="0" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="2" Grid.Column="1" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="2" Grid.Column="2" IsEnabled="False" Margin="1" />
+            <Button Name="btn33" Grid.Row="0" Grid.Column="0"  Margin="1" Click="btn_Click" />
+            <Button Name="btn34" Grid.Row="0" Grid.Column="1"  Margin="1" Click="btn_Click" />
+            <Button Name="btn35" Grid.Row="0" Grid.Column="2"  Margin="1" Click="btn_Click" />
+            <Button Name="btn43" Grid.Row="1" Grid.Column="0"  Margin="1" Click="btn_Click" />
+            <Button Name="btn44" Grid.Row="1" Grid.Column="1"  Margin="1" Click="btn_Click" />
+            <Button Name="btn45" Grid.Row="1" Grid.Column="2"  Margin="1" Click="btn_Click" />
+            <Button Name="btn53" Grid.Row="2" Grid.Column="0"  Margin="1" Click="btn_Click" />
+            <Button Name="btn54" Grid.Row="2" Grid.Column="1"  Margin="1" Click="btn_Click" />
+            <Button Name="btn55" Grid.Row="2" Grid.Column="2"  Margin="1" Click="btn_Click" />
 
         </Grid>
 
-        <Grid Grid.Row="3" Grid.Column="2" Margin="3">
+        <Grid Name="game12" Grid.Row="3" Grid.Column="2" Margin="3">
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
@@ -166,19 +172,20 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Row="0" Grid.Column="0" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="0" Grid.Column="1" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="0" Grid.Column="2" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="1" Grid.Column="0" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="1" Grid.Column="1" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="1" Grid.Column="2" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="2" Grid.Column="0" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="2" Grid.Column="1" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="2" Grid.Column="2" IsEnabled="False" Margin="1" />
+            <Button Name="btn36" Grid.Row="0" Grid.Column="0"  Margin="1" Click="btn_Click" />
+            <Button Name="btn37" Grid.Row="0" Grid.Column="1"  Margin="1" Click="btn_Click" />
+            <Button Name="btn38" Grid.Row="0" Grid.Column="2"  Margin="1" Click="btn_Click" />
+            <Button Name="btn46" Grid.Row="1" Grid.Column="0"  Margin="1" Click="btn_Click" />
+            <Button Name="btn47" Grid.Row="1" Grid.Column="1"  Margin="1" Click="btn_Click" />
+            <Button Name="btn48" Grid.Row="1" Grid.Column="2"  Margin="1" Click="btn_Click" />
+            <Button Name="btn56" Grid.Row="2" Grid.Column="0"  Margin="1" Click="btn_Click" />
+            <Button Name="btn57" Grid.Row="2" Grid.Column="1"  Margin="1" Click="btn_Click" />
+            <Button Name="btn58" Grid.Row="2" Grid.Column="2"  Margin="1" Click="btn_Click" />
 
         </Grid>
 
-        <Grid Grid.Row="4" Grid.Column="0" Margin="3">
+        <Grid Name="game20" Grid.Row="4" Grid.Column="0" Margin="3">
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
@@ -191,19 +198,20 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Row="0" Grid.Column="0" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="0" Grid.Column="1" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="0" Grid.Column="2" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="1" Grid.Column="0" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="1" Grid.Column="1" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="1" Grid.Column="2" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="2" Grid.Column="0" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="2" Grid.Column="1" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="2" Grid.Column="2" IsEnabled="False" Margin="1" />
+            <Button Name="btn60" Grid.Row="0" Grid.Column="0"  Margin="1" Click="btn_Click" />
+            <Button Name="btn61" Grid.Row="0" Grid.Column="1"  Margin="1" Click="btn_Click" />
+            <Button Name="btn62" Grid.Row="0" Grid.Column="2"  Margin="1" Click="btn_Click" />
+            <Button Name="btn70" Grid.Row="1" Grid.Column="0"  Margin="1" Click="btn_Click" />
+            <Button Name="btn71" Grid.Row="1" Grid.Column="1"  Margin="1" Click="btn_Click" />
+            <Button Name="btn72" Grid.Row="1" Grid.Column="2"  Margin="1" Click="btn_Click" />
+            <Button Name="btn80" Grid.Row="2" Grid.Column="0"  Margin="1" Click="btn_Click" />
+            <Button Name="btn81" Grid.Row="2" Grid.Column="1"  Margin="1" Click="btn_Click" />
+            <Button Name="btn82" Grid.Row="2" Grid.Column="2"  Margin="1" Click="btn_Click" />
 
         </Grid>
 
-        <Grid Grid.Row="4" Grid.Column="1" Margin="3">
+        <Grid Name="game21" Grid.Row="4" Grid.Column="1" Margin="3">
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
@@ -216,19 +224,20 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Row="0" Grid.Column="0" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="0" Grid.Column="1" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="0" Grid.Column="2" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="1" Grid.Column="0" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="1" Grid.Column="1" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="1" Grid.Column="2" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="2" Grid.Column="0" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="2" Grid.Column="1" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="2" Grid.Column="2" IsEnabled="False" Margin="1" />
+            <Button Name="btn63" Grid.Row="0" Grid.Column="0"  Margin="1" Click="btn_Click" />
+            <Button Name="btn64" Grid.Row="0" Grid.Column="1"  Margin="1" Click="btn_Click" />
+            <Button Name="btn65" Grid.Row="0" Grid.Column="2"  Margin="1" Click="btn_Click" />
+            <Button Name="btn73" Grid.Row="1" Grid.Column="0"  Margin="1" Click="btn_Click" />
+            <Button Name="btn74" Grid.Row="1" Grid.Column="1"  Margin="1" Click="btn_Click" />
+            <Button Name="btn75" Grid.Row="1" Grid.Column="2"  Margin="1" Click="btn_Click" />
+            <Button Name="btn83" Grid.Row="2" Grid.Column="0"  Margin="1" Click="btn_Click" />
+            <Button Name="btn84" Grid.Row="2" Grid.Column="1"  Margin="1" Click="btn_Click" />
+            <Button Name="btn85" Grid.Row="2" Grid.Column="2"  Margin="1" Click="btn_Click" />
 
         </Grid>
 
-        <Grid Grid.Row="4" Grid.Column="3" Margin="3">
+        <Grid Name="game22" Grid.Row="4" Grid.Column="3" Margin="3">
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
@@ -241,15 +250,15 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Row="0" Grid.Column="0" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="0" Grid.Column="1" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="0" Grid.Column="2" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="1" Grid.Column="0" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="1" Grid.Column="1" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="1" Grid.Column="2" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="2" Grid.Column="0" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="2" Grid.Column="1" IsEnabled="False" Margin="1" />
-            <Button Grid.Row="2" Grid.Column="2" IsEnabled="False" Margin="1" />
+            <Button Name="btn66" Grid.Row="0" Grid.Column="0"  Margin="1" Click="btn_Click" />
+            <Button Name="btn67" Grid.Row="0" Grid.Column="1"  Margin="1" Click="btn_Click" />
+            <Button Name="btn68" Grid.Row="0" Grid.Column="2"  Margin="1" Click="btn_Click" />
+            <Button Name="btn76" Grid.Row="1" Grid.Column="0"  Margin="1" Click="btn_Click" />
+            <Button Name="btn77" Grid.Row="1" Grid.Column="1"  Margin="1" Click="btn_Click" />
+            <Button Name="btn78" Grid.Row="1" Grid.Column="2"  Margin="1" Click="btn_Click" />
+            <Button Name="btn86" Grid.Row="2" Grid.Column="0"  Margin="1" Click="btn_Click" />
+            <Button Name="btn87" Grid.Row="2" Grid.Column="1"  Margin="1" Click="btn_Click" />
+            <Button Name="btn88" Grid.Row="2" Grid.Column="2"  Margin="1" Click="btn_Click" />
 
         </Grid>
 

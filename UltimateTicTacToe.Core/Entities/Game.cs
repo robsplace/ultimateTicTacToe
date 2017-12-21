@@ -12,6 +12,6 @@ namespace UltimateTicTacToe.Core.Entities
 
         public Players?[,,,] Board { get; } = new Players?[3, 3, 3, 3];
 
-        public Tuple<int, int> LastPlay { get; set; } = new Tuple<int, int>(-1, -1);
+        public Tuple<int, int> LastPlay { get; set; } = null;
     }
 }

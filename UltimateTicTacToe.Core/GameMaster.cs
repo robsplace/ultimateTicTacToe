@@ -29,7 +29,7 @@ namespace UltimateTicTacToe.Core
             }
             game.Board[gameXIndex, gameYIndex, pickXIndex, pickYIndex] = game.CurrentPlayer;
             game.LastPlay = new Tuple<int, int>(pickXIndex, pickYIndex);
-
+            game.CurrentPlayer = game.CurrentPlayer == Players.X ? Players.O : Players.X;
         }
 
         public static bool IsPickValid(Game game, int gameXIndex, int gameYIndex, int pickXIndex, int pickYIndex)
@@ -45,17 +45,13 @@ namespace UltimateTicTacToe.Core
             {
                 throw new ArgumentNullException("game cannot be null");
             }
-            if (game.LastPlay == null)
-            {
-                throw new ArgumentNullException("game.LastPlay cannot be null");
-            }
             if (game.Board == null)
             {
                 throw new ArgumentNullException("game.Board cannot be null");
             }
 
-            return game.LastPlay.Item1 == gameXIndex
-                && game.LastPlay.Item2 == gameYIndex
+            return (game.LastPlay == null
+                    || (game.LastPlay.Item1 == gameXIndex && game.LastPlay.Item2 == gameYIndex))
                 && !GetGameStatus(game, gameXIndex, gameYIndex).HasValue
                 && game.Board[gameXIndex, gameYIndex, pickXIndex, pickYIndex] == null;
         }
@@ -81,11 +77,11 @@ namespace UltimateTicTacToe.Core
 
             if (game.Board[gameXIndex, gameYIndex, 0, 0].HasValue
                 && ((game.Board[gameXIndex, gameYIndex, 0, 0] == game.Board[gameXIndex, gameYIndex, 0, 1]
-                        && game.Board[gameXIndex, gameYIndex, 0, 0] == game.Board[gameXIndex, gameYIndex, 0, 2])
+                        && game.Board[gameXIndex, gameYIndex, 0, 1] == game.Board[gameXIndex, gameYIndex, 0, 2])
                     || (game.Board[gameXIndex, gameYIndex, 0, 0] == game.Board[gameXIndex, gameYIndex, 1, 1]
-                        && game.Board[gameXIndex, gameYIndex, 0, 0] == game.Board[gameXIndex, gameYIndex, 2, 2])
+                        && game.Board[gameXIndex, gameYIndex, 1, 1] == game.Board[gameXIndex, gameYIndex, 2, 2])
                     || (game.Board[gameXIndex, gameYIndex, 0, 0] == game.Board[gameXIndex, gameYIndex, 1, 0]
-                        && game.Board[gameXIndex, gameYIndex, 0, 0] == game.Board[gameXIndex, gameYIndex, 2, 0])))
+                        && game.Board[gameXIndex, gameYIndex, 1, 0] == game.Board[gameXIndex, gameYIndex, 2, 0])))
             {
                 return (GameStatuses)game.Board[gameXIndex, gameYIndex, 0, 0];
             }

@@ -9,6 +9,6 @@ namespace UltimateTicTacToe.Core.Entities
     public enum Players : byte
     {
         X = 0,
-        Y = 1,
+        O = 1,
     }
 }
