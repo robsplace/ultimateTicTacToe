@@ -48,7 +48,7 @@ namespace UltimateTicTacToe
                 foreach (var gameButton in _gameButtons)
                 {
                     gameButton.IsEnabled = true;
-                    gameButton.Content = string.Empty;
+                    ((gameButton.Content as Viewbox).Child as TextBlock).Text = string.Empty;
                 }
 
                 foreach (var grid in _boardGridViews)
@@ -59,7 +59,7 @@ namespace UltimateTicTacToe
                 return;
             }
 
-            switch(_game.CurrentPlayer)
+            switch (_game.CurrentPlayer)
             {
                 case Players.X:
                     txtPlayerX.FontWeight = FontWeights.ExtraBold;
@@ -106,13 +106,13 @@ namespace UltimateTicTacToe
                         _boardResults[i, j].Text = string.Empty;
                         _boardResults[i, j].Visibility = Visibility.Collapsed;
                     }
-                    _boardGridViews[i, j].IsEnabled = forcedBoard != null ? forcedBoard.Item1 == i && forcedBoard.Item2 == j: !gameStatus.HasValue;
+                    _boardGridViews[i, j].IsEnabled = forcedBoard != null ? forcedBoard.Item1 == i && forcedBoard.Item2 == j : !gameStatus.HasValue;
 
                     for (int k = 0; k < 3; k++)
                     {
                         for (int l = 0; l < 3; l++)
                         {
-                            _gameButtons[i, j, k, l].Content = _game.Board[i, j, k, l]?.ToString() ?? string.Empty;
+                            ((_gameButtons[i, j, k, l].Content as Viewbox).Child as TextBlock).Text = _game.Board[i, j, k, l]?.ToString() ?? string.Empty;
                             _gameButtons[i, j, k, l].IsEnabled = !_game.Board[i, j, k, l].HasValue;
                         }
                     }
@@ -249,7 +249,7 @@ namespace UltimateTicTacToe
             var btn = sender as Button;
             if (btn.IsEnabled)
             {
-                btn.Content = string.Empty;
+                ((btn.Content as Viewbox).Child as TextBlock).Text = string.Empty;
             }
         }
 
@@ -259,7 +259,7 @@ namespace UltimateTicTacToe
             if (btn.IsEnabled
                 && _game != null)
             {
-                btn.Content = _game.CurrentPlayer == Players.X ? "X" : "O";
+                ((btn.Content as Viewbox).Child as TextBlock).Text = _game.CurrentPlayer == Players.X ? "X" : "O";
             }
         }
     }
