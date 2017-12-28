@@ -40,6 +40,9 @@ namespace UltimateTicTacToe
 
         private void UpdateBoard()
         {
+            txtPlayerO.FontWeight = FontWeights.Normal;
+            txtPlayerX.FontWeight = FontWeights.Normal;
+
             if (_game == null)
             {
                 foreach (var gameButton in _gameButtons)
@@ -56,13 +59,23 @@ namespace UltimateTicTacToe
                 return;
             }
 
+            switch(_game.CurrentPlayer)
+            {
+                case Players.X:
+                    txtPlayerX.FontWeight = FontWeights.ExtraBold;
+                    break;
+                case Players.O:
+                    txtPlayerO.FontWeight = FontWeights.ExtraBold;
+                    break;
+            }
+
             Tuple<int, int> forcedBoard = null;
 
             // if the next play is in a forced block
             if (_game.LastPlay != null
                 && _game.LastPlay.Item1 >= 0 && _game.LastPlay.Item1 < 3
                 && _game.LastPlay.Item2 >= 0 && _game.LastPlay.Item2 < 3
-                && !GameMaster.GetGameStatus(_game, _game.LastPlay.Item1, _game.LastPlay.Item2).HasValue)
+                && !GameMaster.GetBoardStatus(_game, _game.LastPlay.Item1, _game.LastPlay.Item2).HasValue)
             {
                 forcedBoard = _game.LastPlay;
             }
@@ -71,7 +84,7 @@ namespace UltimateTicTacToe
             {
                 for (int j = 0; j < 3; j++)
                 {
-                    var gameStatus = GameMaster.GetGameStatus(_game, i, j);
+                    var gameStatus = GameMaster.GetBoardStatus(_game, i, j);
                     if (gameStatus.HasValue)
                     {
                         switch (gameStatus)
@@ -229,7 +242,25 @@ namespace UltimateTicTacToe
             var col = Int32.Parse(((Button)sender).Name.Substring(4, 1));
             GameMaster.UpdateBoard(_game, row / 3, col / 3, row % 3, col % 3);
             UpdateBoard();
-            //((Button)sender);
+        }
+
+        private void btn_MouseLeave(object sender, MouseEventArgs e)
+        {
+            var btn = sender as Button;
+            if (btn.IsEnabled)
+            {
+                btn.Content = string.Empty;
+            }
+        }
+
+        private void btn_MouseEnter(object sender, MouseEventArgs e)
+        {
+            var btn = sender as Button;
+            if (btn.IsEnabled
+                && _game != null)
+            {
+                btn.Content = _game.CurrentPlayer == Players.X ? "X" : "O";
+            }
         }
     }
 }
