@@ -9,7 +9,7 @@ namespace UltimateTicTacToe.Core.Entities
     public enum GameStatuses : byte
     {
         XWon = 0,
-        YWon = 1,
+        OWon = 1,
         Tie = 2
     }
 }

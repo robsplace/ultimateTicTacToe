@@ -262,6 +262,42 @@
 
         </Grid>
 
+        <Viewbox Stretch="Fill" Grid.Row="2" Grid.Column="0">
+            <TextBlock Name="txtBoardStatus00" FontWeight="Bold" Visibility="Hidden"/>
+        </Viewbox>
+
+        <Viewbox Stretch="Fill" Grid.Row="2" Grid.Column="1">
+            <TextBlock Name="txtBoardStatus01" FontWeight="Bold" Visibility="Hidden"/>
+        </Viewbox>
+
+        <Viewbox Stretch="Fill" Grid.Row="2" Grid.Column="2">
+            <TextBlock Name="txtBoardStatus02" FontWeight="Bold" Visibility="Hidden"/>
+        </Viewbox>
+
+        <Viewbox Stretch="Fill" Grid.Row="3" Grid.Column="0">
+            <TextBlock Name="txtBoardStatus10" FontWeight="Bold" Visibility="Hidden"/>
+        </Viewbox>
+
+        <Viewbox Stretch="Fill" Grid.Row="3" Grid.Column="1">
+            <TextBlock Name="txtBoardStatus11" FontWeight="Bold" Visibility="Hidden"/>
+        </Viewbox>
+
+        <Viewbox Stretch="Fill" Grid.Row="3" Grid.Column="2">
+            <TextBlock Name="txtBoardStatus12" FontWeight="Bold" Visibility="Hidden"/>
+        </Viewbox>
+
+        <Viewbox Stretch="Fill" Grid.Row="4" Grid.Column="0">
+            <TextBlock Name="txtBoardStatus20" FontWeight="Bold" Visibility="Hidden"/>
+        </Viewbox>
+
+        <Viewbox Stretch="Fill" Grid.Row="4" Grid.Column="1">
+            <TextBlock Name="txtBoardStatus21" FontWeight="Bold" Visibility="Hidden"/>
+        </Viewbox>
+
+        <Viewbox Stretch="Fill" Grid.Row="4" Grid.Column="2">
+            <TextBlock Name="txtBoardStatus22" FontWeight="Bold" Visibility="Hidden"/>
+        </Viewbox>
+
         <ProgressBar Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" Foreground="DarkTurquoise" Maximum="100" Minimum="0" Value="100" Margin="3" />
 
     </Grid>

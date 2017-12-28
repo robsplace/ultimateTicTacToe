@@ -24,7 +24,8 @@ namespace UltimateTicTacToe
     {
         private Game _game = null;
         private Button[,,,] _gameButtons = new Button[3, 3, 3, 3];
-        private Grid[,] _gameGridViews = new Grid[3, 3];
+        private Grid[,] _boardGridViews = new Grid[3, 3];
+        private TextBlock[,] _boardResults = new TextBlock[3, 3];
 
         public MainWindow()
         {
@@ -47,7 +48,7 @@ namespace UltimateTicTacToe
                     gameButton.Content = string.Empty;
                 }
 
-                foreach (var grid in _gameGridViews)
+                foreach (var grid in _boardGridViews)
                 {
                     grid.IsEnabled = false;
                 }
@@ -70,7 +71,29 @@ namespace UltimateTicTacToe
             {
                 for (int j = 0; j < 3; j++)
                 {
-                    _gameGridViews[i, j].IsEnabled = forcedBoard != null ? forcedBoard.Item1 == i && forcedBoard.Item2 == j: !GameMaster.GetGameStatus(_game, i, j).HasValue;
+                    var gameStatus = GameMaster.GetGameStatus(_game, i, j);
+                    if (gameStatus.HasValue)
+                    {
+                        switch (gameStatus)
+                        {
+                            case GameStatuses.Tie:
+                                _boardResults[i, j].Text = "?";
+                                break;
+                            case GameStatuses.XWon:
+                                _boardResults[i, j].Text = "X";
+                                break;
+                            case GameStatuses.OWon:
+                                _boardResults[i, j].Text = "O";
+                                break;
+                        }
+                        _boardResults[i, j].Visibility = Visibility.Visible;
+                    }
+                    else
+                    {
+                        _boardResults[i, j].Text = string.Empty;
+                        _boardResults[i, j].Visibility = Visibility.Collapsed;
+                    }
+                    _boardGridViews[i, j].IsEnabled = forcedBoard != null ? forcedBoard.Item1 == i && forcedBoard.Item2 == j: !gameStatus.HasValue;
 
                     for (int k = 0; k < 3; k++)
                     {
@@ -177,15 +200,25 @@ namespace UltimateTicTacToe
             _gameButtons[2, 2, 2, 1] = btn87;
             _gameButtons[2, 2, 2, 2] = btn88;
 
-            _gameGridViews[0, 0] = game00;
-            _gameGridViews[0, 1] = game01;
-            _gameGridViews[0, 2] = game02;
-            _gameGridViews[1, 0] = game10;
-            _gameGridViews[1, 1] = game11;
-            _gameGridViews[1, 2] = game12;
-            _gameGridViews[2, 0] = game20;
-            _gameGridViews[2, 1] = game21;
-            _gameGridViews[2, 2] = game22;
+            _boardGridViews[0, 0] = game00;
+            _boardGridViews[0, 1] = game01;
+            _boardGridViews[0, 2] = game02;
+            _boardGridViews[1, 0] = game10;
+            _boardGridViews[1, 1] = game11;
+            _boardGridViews[1, 2] = game12;
+            _boardGridViews[2, 0] = game20;
+            _boardGridViews[2, 1] = game21;
+            _boardGridViews[2, 2] = game22;
+
+            _boardResults[0, 0] = txtBoardStatus00;
+            _boardResults[0, 1] = txtBoardStatus01;
+            _boardResults[0, 2] = txtBoardStatus02;
+            _boardResults[1, 0] = txtBoardStatus10;
+            _boardResults[1, 1] = txtBoardStatus11;
+            _boardResults[1, 2] = txtBoardStatus12;
+            _boardResults[2, 0] = txtBoardStatus20;
+            _boardResults[2, 1] = txtBoardStatus21;
+            _boardResults[2, 2] = txtBoardStatus22;
 
             UpdateBoard();
         }

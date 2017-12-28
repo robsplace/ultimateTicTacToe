@@ -51,7 +51,8 @@ namespace UltimateTicTacToe.Core
             }
 
             return (game.LastPlay == null
-                    || (game.LastPlay.Item1 == gameXIndex && game.LastPlay.Item2 == gameYIndex))
+                    || (game.LastPlay.Item1 == gameXIndex && game.LastPlay.Item2 == gameYIndex)
+                    || GetGameStatus(game, game.LastPlay.Item1, game.LastPlay.Item2).HasValue)
                 && !GetGameStatus(game, gameXIndex, gameYIndex).HasValue
                 && game.Board[gameXIndex, gameYIndex, pickXIndex, pickYIndex] == null;
         }
