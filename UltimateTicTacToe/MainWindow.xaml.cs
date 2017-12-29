@@ -59,6 +59,8 @@ namespace UltimateTicTacToe
                 return;
             }
 
+            txtGameStatus.Text = string.Empty;
+
             switch (_game.CurrentPlayer)
             {
                 case Players.X:
@@ -100,14 +102,15 @@ namespace UltimateTicTacToe
                                 break;
                         }
                         _boardResults[i, j].Visibility = Visibility.Visible;
+                        _boardGridViews[i, j].Opacity = 0.15;
                     }
                     else
                     {
                         _boardResults[i, j].Text = string.Empty;
                         _boardResults[i, j].Visibility = Visibility.Collapsed;
+                        _boardGridViews[i, j].Opacity = 1;
                     }
                     _boardGridViews[i, j].IsEnabled = forcedBoard != null ? forcedBoard.Item1 == i && forcedBoard.Item2 == j : !gameStatus.HasValue;
-
                     for (int k = 0; k < 3; k++)
                     {
                         for (int l = 0; l < 3; l++)
@@ -117,6 +120,30 @@ namespace UltimateTicTacToe
                         }
                     }
                 }
+            }
+            
+            var gameStatusX = GameMaster.GetGameStatus(_game);
+            if (gameStatusX.HasValue)
+            {
+                foreach (var grid in _boardGridViews)
+                {
+                    grid.IsEnabled = false;
+                }
+
+                switch (gameStatusX)
+                {
+                    case GameStatuses.Tie:
+                        txtGameStatus.Text = "Game tied!";
+                        break;
+                    case GameStatuses.OWon:
+                        txtGameStatus.Text = "Player O has won!!";
+                        break;
+                    case GameStatuses.XWon:
+                        txtGameStatus.Text = "Player X has won!!";
+                        break;
+                }
+
+                return;
             }
         }
 

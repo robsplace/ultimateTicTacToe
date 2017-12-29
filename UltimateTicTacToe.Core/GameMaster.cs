@@ -10,6 +10,18 @@ namespace UltimateTicTacToe.Core
     // this project is too small to overthink the design - just have one class that does all the BL in static functions
     public static class GameMaster
     {
+        private static readonly Tuple<int[], int[], int[]>[] _winningGameConfigurations = new Tuple<int[], int[], int[]>[]
+        {
+            new Tuple<int[], int[], int[]>(new int[] {0, 0}, new int[] {0, 1}, new int[] {0, 2}),
+            new Tuple<int[], int[], int[]>(new int[] {1, 0}, new int[] {1, 1}, new int[] {1, 2}),
+            new Tuple<int[], int[], int[]>(new int[] {2, 0}, new int[] {2, 1}, new int[] {2, 2}),
+            new Tuple<int[], int[], int[]>(new int[] {0, 0}, new int[] {1, 0}, new int[] {2, 0}),
+            new Tuple<int[], int[], int[]>(new int[] {0, 1}, new int[] {1, 1}, new int[] {2, 1}),
+            new Tuple<int[], int[], int[]>(new int[] {0, 2}, new int[] {1, 2}, new int[] {2, 2}),
+            new Tuple<int[], int[], int[]>(new int[] {0, 0}, new int[] {1, 1}, new int[] {2, 2}),
+            new Tuple<int[], int[], int[]>(new int[] {0, 2}, new int[] {1, 1}, new int[] {2, 0}),
+        };
+
         public static void UpdateBoard(Game game, int boardXIndex, int boardYIndex, int pickXIndex, int pickYIndex)
         {
             if (boardXIndex < 0 || boardXIndex > 2
@@ -82,17 +94,13 @@ namespace UltimateTicTacToe.Core
                 throw new ArgumentNullException("game cannot be null");
             }
 
-            GameStatuses? result = null;
-            if ((result = GetGameStatus(game.Board[boardXIndex, boardYIndex, 0, 0], game.Board[boardXIndex, boardYIndex, 0, 1], game.Board[boardXIndex, boardYIndex, 0, 2])).HasValue
-                || (result = GetGameStatus(game.Board[boardXIndex, boardYIndex, 0, 0], game.Board[boardXIndex, boardYIndex, 1, 1], game.Board[boardXIndex, boardYIndex, 2, 2])).HasValue
-                || (result = GetGameStatus(game.Board[boardXIndex, boardYIndex, 0, 0], game.Board[boardXIndex, boardYIndex, 1, 0], game.Board[boardXIndex, boardYIndex, 2, 0])).HasValue
-                || (result = GetGameStatus(game.Board[boardXIndex, boardYIndex, 1, 0], game.Board[boardXIndex, boardYIndex, 1, 1], game.Board[boardXIndex, boardYIndex, 1, 2])).HasValue
-                || (result = GetGameStatus(game.Board[boardXIndex, boardYIndex, 2, 0], game.Board[boardXIndex, boardYIndex, 2, 1], game.Board[boardXIndex, boardYIndex, 2, 2])).HasValue
-                || (result = GetGameStatus(game.Board[boardXIndex, boardYIndex, 0, 1], game.Board[boardXIndex, boardYIndex, 1, 1], game.Board[boardXIndex, boardYIndex, 2, 1])).HasValue
-                || (result = GetGameStatus(game.Board[boardXIndex, boardYIndex, 0, 2], game.Board[boardXIndex, boardYIndex, 1, 2], game.Board[boardXIndex, boardYIndex, 2, 2])).HasValue
-                || (result = GetGameStatus(game.Board[boardXIndex, boardYIndex, 0, 2], game.Board[boardXIndex, boardYIndex, 1, 1], game.Board[boardXIndex, boardYIndex, 2, 0])).HasValue)
+            foreach (var winningGameConfig in _winningGameConfigurations)
             {
-                return result;
+                var result = GetGameStatus(game.Board[boardXIndex, boardYIndex, winningGameConfig.Item1[0], winningGameConfig.Item1[1]], game.Board[boardXIndex, boardYIndex, winningGameConfig.Item2[0], winningGameConfig.Item2[1]], game.Board[boardXIndex, boardYIndex, winningGameConfig.Item3[0], winningGameConfig.Item3[1]]);
+                if (result.HasValue)
+                {
+                    return result;
+                }
             }
 
             for (int i = 0; i < 3; i++)
@@ -121,53 +129,24 @@ namespace UltimateTicTacToe.Core
                 }
             }
 
-            GameStatuses? result = null;
-
-            ///  * | * | *
-            /// ---|---|---
-            ///    |   |
-            /// ---|---|---
-            ///    |   |
-            if (boardStatuses[0, 0].HasValue
-                && (boardStatuses[0, 0] == GameStatuses.Tie
-                    || boardStatuses[0, 1] == GameStatuses.Tie
-                    || boardStatuses[0, 0] == boardStatuses[0, 1])
-                && (boardStatuses[0, 1] == GameStatuses.Tie
-                    || boardStatuses[0, 2] == GameStatuses.Tie
-                    || boardStatuses[0, 1] == boardStatuses[0, 2]))
+            GameStatuses? result = null, previousResult = null;
+            foreach (var winningGameConfig in _winningGameConfigurations)
             {
-                result = boardStatuses[0, 0].Value;
+                result = GetGameStatus(boardStatuses[winningGameConfig.Item1[0], winningGameConfig.Item1[1]], boardStatuses[winningGameConfig.Item2[0], winningGameConfig.Item2[1]], boardStatuses[winningGameConfig.Item3[0], winningGameConfig.Item3[1]]);
+
+                if (result.HasValue)
+                {
+                    if (result == GameStatuses.Tie
+                        || (previousResult.HasValue && previousResult != result))
+                    {
+                        return GameStatuses.Tie;
+                    }
+
+                    previousResult = result;
+                }
             }
 
-            if (result.HasValue
-                && result == GameStatuses.Tie)
-            {
-                return result.Value;
-            }
-
-            ///  * |   |  
-            /// ---|---|---
-            ///    | * |
-            /// ---|---|---
-            ///    |   | *
-            if (boardStatuses[0, 0].HasValue
-                && (boardStatuses[0, 0] == GameStatuses.Tie
-                    || boardStatuses[1, 1] == GameStatuses.Tie
-                    || boardStatuses[0, 0] == boardStatuses[1, 1])
-                && (boardStatuses[0, 1] == GameStatuses.Tie
-                    || boardStatuses[0, 2] == GameStatuses.Tie
-                    || boardStatuses[0, 1] == boardStatuses[0, 2]))
-            {
-                result = boardStatuses[0, 0].Value;
-            }
-
-            if (result.HasValue
-                && result == GameStatuses.Tie)
-            {
-                return result.Value;
-            }
-
-            return result;
+            return previousResult;
         }
 
         private static GameStatuses? GetGameStatus(Players? player0, Players? player1, Players? player2)
@@ -253,8 +232,7 @@ namespace UltimateTicTacToe.Core
             }
             //  i | i | ?
             //  i | i | i
-            else if (status2 == GameStatuses.Tie
-                || (status0 == status1 && status1 == status2))
+            else if (status0 == status1 && (status2 == GameStatuses.Tie || status1 == status2))
             {
                 return status0;
             }
