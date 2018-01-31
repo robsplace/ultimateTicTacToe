@@ -622,7 +622,7 @@
             <TextBlock Name="txtBoardStatus22" FontWeight="Bold" Visibility="Hidden"/>
         </Viewbox>
 
-        <TextBlock Name="txtGameStatus" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Player X Wins!!!" />
+        <TextBlock Name="txtGameStatus" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center" Text="" />
         <!--<ProgressBar Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" Foreground="DarkTurquoise" Maximum="100" Minimum="0" Value="100" Margin="3" />0-->
 
     </Grid>

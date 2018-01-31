@@ -34,8 +34,14 @@ namespace UltimateTicTacToe
 
         private void btnNewGame_Click(object sender, RoutedEventArgs e)
         {
-            _game = new Game();
-            UpdateBoard();
+            NewGameDialog ngd = new NewGameDialog();
+            if (ngd.ShowDialog() == true) // this looks stupid but easy way to check for truthy since ShowDialog returns bool?
+            {
+                _game = new Game();
+                txtPlayerX.Text = ngd.PlayerXName + (!"Player X".Equals(ngd.PlayerXName, StringComparison.InvariantCultureIgnoreCase) ? " (X)" : "");
+                txtPlayerO.Text = ngd.PlayerOName + (!"Player O".Equals(ngd.PlayerOName, StringComparison.InvariantCultureIgnoreCase) ? " (O)" : "");
+                UpdateBoard();
+            }
         }
 
         private void UpdateBoard()
