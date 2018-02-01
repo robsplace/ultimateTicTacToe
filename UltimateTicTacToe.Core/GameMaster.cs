@@ -146,6 +146,24 @@ namespace UltimateTicTacToe.Core
                 }
             }
 
+            // null for previousResult means there is no game winner...better make sure the board isn't full
+            if (previousResult == null)
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    for (int j = 0; j < 3; j++)
+                    {
+                        if (!GetBoardStatus(game, i, j).HasValue)
+                        {
+                            return null;
+                        }
+                    }
+                }
+
+                // if the board is full, it's a tie
+                return GameStatuses.Tie;
+            }
+
             return previousResult;
         }
 
