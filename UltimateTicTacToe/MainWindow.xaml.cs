@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -14,6 +17,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using UltimateTicTacToe.Core;
 using UltimateTicTacToe.Core.Entities;
+using UltimateTicTacToe.Core.Interfaces;
+using UltimateTicTacToe.Properties;
 
 namespace UltimateTicTacToe
 {
@@ -26,134 +31,187 @@ namespace UltimateTicTacToe
         private Button[,,,] _gameButtons = new Button[3, 3, 3, 3];
         private Grid[,] _boardGridViews = new Grid[3, 3];
         private TextBlock[,] _boardResults = new TextBlock[3, 3];
+        private List<Type> _pluginTypes = new List<Type>();
+        private Dictionary<Players, IGameAi> _playerAis = new Dictionary<Players, IGameAi>() { { Players.X, null }, { Players.O, null } };
 
         public MainWindow()
         {
             InitializeComponent();
+            RefreshPlugins();
         }
 
-        private void btnNewGame_Click(object sender, RoutedEventArgs e)
+        private async void btnNewGame_Click(object sender, RoutedEventArgs e)
         {
-            NewGameDialog ngd = new NewGameDialog();
+            NewGameDialog ngd = new NewGameDialog(_pluginTypes, txtPlayerX.Text, txtPlayerO.Text, _playerAis[Players.X]?.GetType(), _playerAis[Players.O]?.GetType());
             if (ngd.ShowDialog() == true) // this looks stupid but easy way to check for truthy since ShowDialog returns bool?
             {
                 _game = new Game();
-                txtPlayerX.Text = ngd.PlayerXName + (!"Player X".Equals(ngd.PlayerXName, StringComparison.InvariantCultureIgnoreCase) ? " (X)" : "");
-                txtPlayerO.Text = ngd.PlayerOName + (!"Player O".Equals(ngd.PlayerOName, StringComparison.InvariantCultureIgnoreCase) ? " (O)" : "");
-                UpdateBoard();
+                txtPlayerX.Text = ngd.PlayerXName;
+                txtPlayerO.Text = ngd.PlayerOName;
+                _playerAis[Players.X] = ngd.PlayerXType == null ? null : (IGameAi)Activator.CreateInstance(ngd.PlayerXType);
+                _playerAis[Players.O] = ngd.PlayerOType == null ? null : (IGameAi)Activator.CreateInstance(ngd.PlayerOType);
+                await UpdateBoard();
             }
         }
 
-        private void UpdateBoard()
+        private async Task UpdateBoard()
         {
-            txtPlayerO.FontWeight = FontWeights.Normal;
-            txtPlayerX.FontWeight = FontWeights.Normal;
-
-            if (_game == null)
+            do
             {
-                foreach (var gameButton in _gameButtons)
+                txtPlayerO.FontWeight = FontWeights.Normal;
+                txtPlayerX.FontWeight = FontWeights.Normal;
+
+                if (_game == null)
                 {
-                    gameButton.IsEnabled = true;
-                    ((gameButton.Content as Viewbox).Child as TextBlock).Text = string.Empty;
-                }
-
-                foreach (var grid in _boardGridViews)
-                {
-                    grid.IsEnabled = false;
-                }
-
-                return;
-            }
-
-            txtGameStatus.Text = string.Empty;
-
-            switch (_game.CurrentPlayer)
-            {
-                case Players.X:
-                    txtPlayerX.FontWeight = FontWeights.ExtraBold;
-                    break;
-                case Players.O:
-                    txtPlayerO.FontWeight = FontWeights.ExtraBold;
-                    break;
-            }
-
-            Tuple<int, int> forcedBoard = null;
-
-            // if the next play is in a forced block
-            if (_game.LastPlay != null
-                && _game.LastPlay.Item1 >= 0 && _game.LastPlay.Item1 < 3
-                && _game.LastPlay.Item2 >= 0 && _game.LastPlay.Item2 < 3
-                && !GameMaster.GetBoardStatus(_game, _game.LastPlay.Item1, _game.LastPlay.Item2).HasValue)
-            {
-                forcedBoard = _game.LastPlay;
-            }
-
-            for (int i = 0; i < 3; i++)
-            {
-                for (int j = 0; j < 3; j++)
-                {
-                    var gameStatus = GameMaster.GetBoardStatus(_game, i, j);
-                    if (gameStatus.HasValue)
+                    foreach (var gameButton in _gameButtons)
                     {
-                        switch (gameStatus)
+                        gameButton.IsEnabled = true;
+                        ((gameButton.Content as Viewbox).Child as TextBlock).Text = string.Empty;
+                    }
+
+                    foreach (var grid in _boardGridViews)
+                    {
+                        grid.IsEnabled = false;
+                    }
+
+                    return;
+                }
+
+                txtGameStatus.Text = string.Empty;
+
+                switch (_game.CurrentPlayer)
+                {
+                    case Players.X:
+                        txtPlayerX.FontWeight = FontWeights.ExtraBold;
+                        break;
+                    case Players.O:
+                        txtPlayerO.FontWeight = FontWeights.ExtraBold;
+                        break;
+                }
+
+                Tuple<int, int> forcedBoard = null;
+
+                // if the next play is in a forced block
+                if (_game.LastPlay != null
+                    && _game.LastPlay.Item1 >= 0 && _game.LastPlay.Item1 < 3
+                    && _game.LastPlay.Item2 >= 0 && _game.LastPlay.Item2 < 3
+                    && !GameMaster.GetBoardStatus(_game, _game.LastPlay.Item1, _game.LastPlay.Item2).HasValue)
+                {
+                    forcedBoard = _game.LastPlay;
+                }
+
+                for (int i = 0; i < 3; i++)
+                {
+                    for (int j = 0; j < 3; j++)
+                    {
+                        var gameStatus = GameMaster.GetBoardStatus(_game, i, j);
+                        if (gameStatus.HasValue)
                         {
-                            case GameStatuses.Tie:
-                                _boardResults[i, j].Text = "?";
-                                break;
-                            case GameStatuses.XWon:
-                                _boardResults[i, j].Text = "X";
-                                break;
-                            case GameStatuses.OWon:
-                                _boardResults[i, j].Text = "O";
-                                break;
+                            switch (gameStatus)
+                            {
+                                case GameStatuses.Tie:
+                                    _boardResults[i, j].Text = "?";
+                                    break;
+                                case GameStatuses.XWon:
+                                    _boardResults[i, j].Text = "X";
+                                    break;
+                                case GameStatuses.OWon:
+                                    _boardResults[i, j].Text = "O";
+                                    break;
+                            }
+                            _boardResults[i, j].Visibility = Visibility.Visible;
+                            _boardGridViews[i, j].Opacity = 0.15;
                         }
-                        _boardResults[i, j].Visibility = Visibility.Visible;
-                        _boardGridViews[i, j].Opacity = 0.15;
-                    }
-                    else
-                    {
-                        _boardResults[i, j].Text = string.Empty;
-                        _boardResults[i, j].Visibility = Visibility.Collapsed;
-                        _boardGridViews[i, j].Opacity = 1;
-                    }
-                    _boardGridViews[i, j].IsEnabled = forcedBoard != null ? forcedBoard.Item1 == i && forcedBoard.Item2 == j : !gameStatus.HasValue;
-                    for (int k = 0; k < 3; k++)
-                    {
-                        for (int l = 0; l < 3; l++)
+                        else
                         {
-                            ((_gameButtons[i, j, k, l].Content as Viewbox).Child as TextBlock).Text = _game.Board[i, j, k, l]?.ToString() ?? string.Empty;
-                            _gameButtons[i, j, k, l].IsEnabled = !_game.Board[i, j, k, l].HasValue;
+                            _boardResults[i, j].Text = string.Empty;
+                            _boardResults[i, j].Visibility = Visibility.Collapsed;
+                            _boardGridViews[i, j].Opacity = 1;
+                        }
+                        _boardGridViews[i, j].IsEnabled = forcedBoard != null ? forcedBoard.Item1 == i && forcedBoard.Item2 == j : !gameStatus.HasValue;
+                        for (int k = 0; k < 3; k++)
+                        {
+                            for (int l = 0; l < 3; l++)
+                            {
+                                ((_gameButtons[i, j, k, l].Content as Viewbox).Child as TextBlock).Text = _game.Board[i, j, k, l]?.ToString() ?? string.Empty;
+                                _gameButtons[i, j, k, l].IsEnabled = !_game.Board[i, j, k, l].HasValue;
+                            }
                         }
                     }
                 }
-            }
-            
-            var gameStatusX = GameMaster.GetGameStatus(_game);
-            if (gameStatusX.HasValue)
-            {
-                foreach (var grid in _boardGridViews)
-                {
-                    grid.IsEnabled = false;
-                }
 
-                switch (gameStatusX)
+                var gameStatusX = GameMaster.GetGameStatus(_game);
+                if (gameStatusX.HasValue)
                 {
-                    case GameStatuses.Tie:
-                        txtGameStatus.Text = "Game tied!";
-                        break;
-                    case GameStatuses.OWon:
-                        txtGameStatus.Text = "Player O has won!!";
-                        break;
-                    case GameStatuses.XWon:
-                        txtGameStatus.Text = "Player X has won!!";
-                        break;
-                }
+                    foreach (var grid in _boardGridViews)
+                    {
+                        grid.IsEnabled = false;
+                    }
 
-                return;
-            }
+                    switch (gameStatusX)
+                    {
+                        case GameStatuses.Tie:
+                            txtGameStatus.Text = "Game tied!";
+                            break;
+                        case GameStatuses.OWon:
+                            txtGameStatus.Text = "Player O has won!!";
+                            break;
+                        case GameStatuses.XWon:
+                            txtGameStatus.Text = "Player X has won!!";
+                            break;
+                    }
+
+                    return;
+                }
+            } while (await ProcessNextPlayerAiTurn());
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        private async Task<bool> ProcessNextPlayerAiTurn()
+        {
+            if (_playerAis[_game.CurrentPlayer] == null)
+            {
+                return false;
+            }
+
+            IsEnabled = false;
+
+            try
+            {
+                var cts = new CancellationTokenSource();
+                cts.CancelAfter(Settings.Default.MaxAiTime);
+                int boardX = 0, boardY = 0, pickX = 0, pickY = 0;
+                Task makePick = Task.Run(() =>
+                {
+                    do
+                    {
+                        _playerAis[_game.CurrentPlayer].MakePick(_game, out boardX, out boardY, out pickX, out pickY);
+                    } while (!GameMaster.IsPickValid(_game, boardX, boardY, pickX, pickY));
+                }, cts.Token);
+                
+                await Task.WhenAll(makePick, Task.Delay(Settings.Default.MinAiTime));
+
+                GameMaster.UpdateBoard(_game, boardX, boardY, pickX, pickY);
+            }
+            catch (OperationCanceledException)
+            {
+                // ai timed out.  what do?
+                foreach (var grid in _boardGridViews)
+                {
+                    grid.IsEnabled = false;
+                }
+
+                txtGameStatus.Text = string.Format("{0} took longer than {1} milliseconds and is disqualified", _game.CurrentPlayer, Settings.Default.MaxAiTime);
+                return false;
+            }
+            finally
+            {
+                IsEnabled = true;
+            }
+
+            return true;
+        }
+
+        private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
             // i'm sure there's a better way to do this but...meh
             _gameButtons[0, 0, 0, 0] = btn00;
@@ -266,15 +324,15 @@ namespace UltimateTicTacToe
             _boardResults[2, 1] = txtBoardStatus21;
             _boardResults[2, 2] = txtBoardStatus22;
 
-            UpdateBoard();
+            await UpdateBoard();
         }
 
-        private void btn_Click(object sender, RoutedEventArgs e)
+        private async void btn_Click(object sender, RoutedEventArgs e)
         {
             var row = Int32.Parse(((Button)sender).Name.Substring(3, 1));
             var col = Int32.Parse(((Button)sender).Name.Substring(4, 1));
             GameMaster.UpdateBoard(_game, row / 3, col / 3, row % 3, col % 3);
-            UpdateBoard();
+            await UpdateBoard();
         }
 
         private void btn_MouseLeave(object sender, MouseEventArgs e)
@@ -293,6 +351,70 @@ namespace UltimateTicTacToe
                 && _game != null)
             {
                 ((btn.Content as Viewbox).Child as TextBlock).Text = _game.CurrentPlayer == Players.X ? "X" : "O";
+            }
+        }
+
+        private async void RestartGame(object sender, RoutedEventArgs e)
+        {
+            _game = new Game();
+            await UpdateBoard();
+        }
+
+        private void ModifyOptions(object sender, RoutedEventArgs e)
+        {
+            // ShowDialog is nullable so comparing to true is easy way to test for truth
+            if (new OptionsDialog().ShowDialog() == true)
+            {
+                RefreshPlugins();
+            }
+        }
+
+        private void RefreshPlugins()
+        {
+            var path = Settings.Default.PluginsFolder ?? string.Empty;
+
+            if (!Directory.Exists(path))
+            {
+                return;
+            }
+
+            var dllFileNames = Directory.GetFiles(path, "*.dll");
+
+            if (dllFileNames.Length == 0)
+            {
+                return;
+            }
+
+            var assemblies = new List<Assembly>(dllFileNames.Length);
+            foreach (var dllFile in dllFileNames)
+            {
+                AssemblyName an = AssemblyName.GetAssemblyName(dllFile);
+                Assembly assembly = Assembly.Load(an);
+                assemblies.Add(assembly);
+            }
+
+            var pluginType = typeof(IGameAi);
+            _pluginTypes = new List<Type>();
+            foreach (var assembly in assemblies)
+            {
+                if (assembly != null)
+                {
+                    var types = assembly.GetTypes();
+                    foreach (var type in types)
+                    {
+                        if (type.IsInterface || type.IsAbstract)
+                        {
+                            continue;
+                        }
+                        else
+                        {
+                            if (type.GetInterface(pluginType.FullName) != null)
+                            {
+                                _pluginTypes.Add(type);
+                            }
+                        }
+                    }
+                }
             }
         }
     }

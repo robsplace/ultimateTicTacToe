@@ -21,26 +21,45 @@ namespace UltimateTicTacToe
     {
         public string PlayerXName { get; private set; }
         public string PlayerOName { get; private set; }
+        public Type PlayerXType { get; private set; }
+        public Type PlayerOType { get; private set; }
 
-        public NewGameDialog()
+        private List<Type> _pluginTypes = new List<Type>();
+
+        public NewGameDialog(List<Type> pluginTypes, string playerXName, string playerOName, Type playerXType, Type playerOType)
         {
             InitializeComponent();
 
             cbPlayerXType.SelectedValuePath = "Key";
-            cbPlayerXType.DisplayMemberPath = "Value";
-            cbPlayerXType.Items.Add(new KeyValuePair<Type, string>(null, "Human"));
-            cbPlayerXType.SelectedIndex = 0;
-
             cbPlayerOType.SelectedValuePath = "Key";
+
+            cbPlayerXType.DisplayMemberPath = "Value";
             cbPlayerOType.DisplayMemberPath = "Value";
+
+            cbPlayerXType.Items.Add(new KeyValuePair<Type, string>(null, "Human"));
             cbPlayerOType.Items.Add(new KeyValuePair<Type, string>(null, "Human"));
-            cbPlayerOType.SelectedIndex = 0;
+
+            foreach (var type in pluginTypes)
+            {
+                cbPlayerXType.Items.Add(new KeyValuePair<Type, string>(type, string.Format("{0} ({1})", type.Name, type.Namespace)));
+                cbPlayerOType.Items.Add(new KeyValuePair<Type, string>(type, string.Format("{0} ({1})", type.Name, type.Namespace)));
+            }
+
+            cbPlayerXType.SelectedValue = playerXType;
+            cbPlayerOType.SelectedValue = playerOType;
+
+            tbPlayerXName.Text = playerXName;
+            tbPlayerOName.Text = playerOName;
         }
 
         private void OkayButton_Click(object sender, RoutedEventArgs e)
         {
             PlayerXName = tbPlayerXName.Text;
             PlayerOName = tbPlayerOName.Text;
+
+            PlayerXType = cbPlayerXType.SelectedValue as Type;
+            PlayerOType = cbPlayerOType.SelectedValue as Type;
+
             this.DialogResult = true;
         }
 

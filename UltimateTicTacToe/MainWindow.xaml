@@ -23,10 +23,28 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <Button Name="btnNewGame" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Content="New Game" Margin="3" Width="100" VerticalAlignment="Center" HorizontalAlignment="Left" Click="btnNewGame_Click" />
+        <Button Grid.Row="0" Grid.Column="0" Content="New Game" Width="100" Click="btnNewGame_Click" HorizontalAlignment="Left" VerticalAlignment="Center" />
+        <Button Grid.Row="0" Grid.Column="1" Content="Restart Game" Width="100" Click="RestartGame" HorizontalAlignment="Right" VerticalAlignment="Center" />
+        <Button Grid.Row="0" Grid.Column="2" Content="Options" Width="100" Click="ModifyOptions" HorizontalAlignment="Right" VerticalAlignment="Center" />
 
-        <TextBlock Name="txtPlayerX" Grid.Row="1" Grid.Column="0" Text="Player X" VerticalAlignment="Center" HorizontalAlignment="Center" />
-        <TextBlock Name="txtPlayerO" Grid.Row="1" Grid.Column="2" Text="Player O" VerticalAlignment="Center" HorizontalAlignment="Center" />
+        <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Margin="3" VerticalAlignment="Center">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Orientation="Horizontal">
+                <TextBlock FontSize="21" FontWeight="Bold" Text="X" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3,0,21,0" />
+                <TextBlock Name="txtPlayerX" Text="Player X" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
+            </StackPanel>
+
+            <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" Orientation="Horizontal" >
+                <TextBlock Name="txtPlayerO" Text="Player O" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock FontSize="21" FontWeight="Bold" Text="O" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="21,0,3,0"/>
+            </StackPanel>
+
+        </Grid>
 
         <Grid Name="game00" Grid.Row="2" Grid.Column="0" Margin="3">
 

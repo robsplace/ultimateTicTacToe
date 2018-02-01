@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UltimateTicTacToe", "Ultima
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UltimateTicTacToe.Core", "UltimateTicTacToe.Core\UltimateTicTacToe.Core.csproj", "{1AF5B1FC-7D2F-4196-A131-878A4F6ED9F8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UltimateTicTacToe.Ai", "UltimateTicTacToe.Ai\UltimateTicTacToe.Ai.csproj", "{7DD62B64-7396-4AD7-914E-5046746039E4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{1AF5B1FC-7D2F-4196-A131-878A4F6ED9F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1AF5B1FC-7D2F-4196-A131-878A4F6ED9F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1AF5B1FC-7D2F-4196-A131-878A4F6ED9F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DD62B64-7396-4AD7-914E-5046746039E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DD62B64-7396-4AD7-914E-5046746039E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DD62B64-7396-4AD7-914E-5046746039E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DD62B64-7396-4AD7-914E-5046746039E4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
