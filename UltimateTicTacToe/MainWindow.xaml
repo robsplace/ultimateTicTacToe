@@ -23,9 +23,9 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <Button Grid.Row="0" Grid.Column="0" Content="New Game" Width="100" Click="btnNewGame_Click" HorizontalAlignment="Left" VerticalAlignment="Center" />
-        <Button Grid.Row="0" Grid.Column="1" Content="Restart Game" Width="100" Click="RestartGame" HorizontalAlignment="Right" VerticalAlignment="Center" />
-        <Button Grid.Row="0" Grid.Column="2" Content="Options" Width="100" Click="ModifyOptions" HorizontalAlignment="Right" VerticalAlignment="Center" />
+        <Button Grid.Row="0" Grid.Column="0" Content="New Game" Width="100" Click="btnNewGame_Click" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3,0,0,0" />
+        <Button Name="RestartGameButton" Grid.Row="0" Grid.Column="1" Content="Restart Game" Width="100" Click="RestartGame" HorizontalAlignment="Center" VerticalAlignment="Center" IsEnabled="False" />
+        <Button Grid.Row="0" Grid.Column="2" Content="Options" Width="100" Click="ModifyOptions" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,3,0" />
 
         <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Margin="3" VerticalAlignment="Center">
 

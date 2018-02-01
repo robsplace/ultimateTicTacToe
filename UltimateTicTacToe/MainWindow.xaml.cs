@@ -45,6 +45,7 @@ namespace UltimateTicTacToe
             NewGameDialog ngd = new NewGameDialog(_pluginTypes, txtPlayerX.Text, txtPlayerO.Text, _playerAis[Players.X]?.GetType(), _playerAis[Players.O]?.GetType());
             if (ngd.ShowDialog() == true) // this looks stupid but easy way to check for truthy since ShowDialog returns bool?
             {
+                RestartGameButton.IsEnabled = true;
                 _game = new Game();
                 txtPlayerX.Text = ngd.PlayerXName;
                 txtPlayerO.Text = ngd.PlayerOName;
@@ -154,10 +155,10 @@ namespace UltimateTicTacToe
                             txtGameStatus.Text = "Game tied!";
                             break;
                         case GameStatuses.OWon:
-                            txtGameStatus.Text = "Player O has won!!";
+                            txtGameStatus.Text = string.Format("{0} has won!!", txtPlayerO.Text);
                             break;
                         case GameStatuses.XWon:
-                            txtGameStatus.Text = "Player X has won!!";
+                            txtGameStatus.Text = string.Format("{0} has won!!", txtPlayerX.Text);
                             break;
                     }
 
