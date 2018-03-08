@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UltimateTicTacToe", "UltimateTicTacToe\UltimateTicTacToe.csproj", "{0C594DDA-2710-4B41-B82E-717CE53A6A9B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7DD62B64-7396-4AD7-914E-5046746039E4} = {7DD62B64-7396-4AD7-914E-5046746039E4}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UltimateTicTacToe.Core", "UltimateTicTacToe.Core\UltimateTicTacToe.Core.csproj", "{1AF5B1FC-7D2F-4196-A131-878A4F6ED9F8}"
 EndProject
