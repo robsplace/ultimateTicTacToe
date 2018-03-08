@@ -9,8 +9,10 @@ using UltimateTicTacToe.Core.Interfaces;
 
 namespace UltimateTicTacToe.Ai
 {
-    public class MinimaxMandy : IGameAi
+    public abstract class AbstractMinimaxMandy : IGameAi
     {
+        public abstract int Depth { get; }
+
         private static Random _random = new Random();
         private const int MAXIMUM_UTILITY = 100;
         private const int MINIMUM_UTILITY = -100;
@@ -64,8 +66,13 @@ namespace UltimateTicTacToe.Ai
             pickY = winner.Item4;
         }
 
-        private int Minimax(Game game, Players player, int depth = 3, int min = MINIMUM_UTILITY, int max = MAXIMUM_UTILITY)
+        private int Minimax(Game game, Players player, int? depth = null, int min = MINIMUM_UTILITY, int max = MAXIMUM_UTILITY)
         {
+            if (depth == null)
+            {
+                depth = Depth;
+            }
+
             // if leaf node or reached maximum depth, return Utility value of node
             if (GameMaster.GetGameStatus(game) != null || depth == 0)
             {
