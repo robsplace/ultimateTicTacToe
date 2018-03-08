@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MinimaxMandy.cs" />
+    <Compile Include="PredictablePriya.cs" />
     <Compile Include="RandomRandy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
