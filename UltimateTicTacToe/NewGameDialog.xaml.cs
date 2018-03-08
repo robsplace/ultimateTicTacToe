@@ -67,5 +67,10 @@ namespace UltimateTicTacToe
         {
             Close();
         }
+
+        private void TextBoxSelectAll(object sender, RoutedEventArgs e)
+        {
+            (sender as TextBox).SelectAll();
+        }
     }
 }

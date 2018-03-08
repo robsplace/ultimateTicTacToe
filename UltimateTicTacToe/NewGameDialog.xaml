@@ -23,7 +23,7 @@
 
                 <TextBlock Text="Name: " Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" Margin="0,0,5,0" />
 
-                <TextBox Text="Player X" Name="tbPlayerXName" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" Width="300" />
+                <TextBox Text="Player X" Name="tbPlayerXName" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" Width="300" GotFocus="TextBoxSelectAll" />
 
                 <TextBlock Text="Type: " Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" Margin="0,0,5,0" />
 
@@ -47,7 +47,7 @@
 
                 <TextBlock Text="Name: " Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" Margin="0,0,5,0" />
 
-                <TextBox Text="Player O" Name="tbPlayerOName" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" Width="300" />
+                <TextBox Text="Player O" Name="tbPlayerOName" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" Width="300" GotFocus="TextBoxSelectAll" />
 
                 <TextBlock Text="Type: " Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" Margin="0,0,5,0" />
 
