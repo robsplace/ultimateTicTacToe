@@ -33,6 +33,7 @@ namespace UltimateTicTacToe
         private TextBlock[,] _boardResults = new TextBlock[3, 3];
         private List<Type> _pluginTypes = new List<Type>();
         private Dictionary<Players, IGameAi> _playerAis = new Dictionary<Players, IGameAi>() { { Players.X, null }, { Players.O, null } };
+        private uint? NumSimulations = null;
 
         public MainWindow()
         {
@@ -42,17 +43,108 @@ namespace UltimateTicTacToe
 
         private async void btnNewGame_Click(object sender, RoutedEventArgs e)
         {
-            NewGameDialog ngd = new NewGameDialog(_pluginTypes, txtPlayerX.Text, txtPlayerO.Text, _playerAis[Players.X]?.GetType(), _playerAis[Players.O]?.GetType());
+            NewGameDialog ngd = new NewGameDialog(_pluginTypes, txtPlayerX.Text, txtPlayerO.Text, _playerAis[Players.X]?.GetType(), _playerAis[Players.O]?.GetType(), NumSimulations);
             if (ngd.ShowDialog() == true) // this looks stupid but easy way to check for truthy since ShowDialog returns bool?
             {
                 RestartGameButton.IsEnabled = true;
                 _game = new Game();
                 txtPlayerX.Text = ngd.PlayerXName;
                 txtPlayerO.Text = ngd.PlayerOName;
+                tbSimPlayerX.Text = ngd.PlayerXName;
+                tbSimPlayerO.Text = ngd.PlayerOName;
                 _playerAis[Players.X] = ngd.PlayerXType == null ? null : (IGameAi)Activator.CreateInstance(ngd.PlayerXType);
                 _playerAis[Players.O] = ngd.PlayerOType == null ? null : (IGameAi)Activator.CreateInstance(ngd.PlayerOType);
-                await UpdateBoard();
+                NumSimulations = ngd.NumSimulations;
+
+                if (NumSimulations.HasValue)
+                {
+                    gridSimulation.Visibility = Visibility.Visible;
+                    gridVisibleGame.Visibility = Visibility.Collapsed;
+
+                    await SimulateGames();
+                }
+                else
+                {
+                    gridSimulation.Visibility = Visibility.Collapsed;
+                    gridVisibleGame.Visibility = Visibility.Visible;
+                    await UpdateBoard();
+                }
             }
+        }
+
+        private async Task SimulateGames()
+        {
+            IsEnabled = false;
+            tbTotalGames.Text = NumSimulations.ToString();
+            int xGames = 0, oGames = 0, ties = 0;
+
+            tbGamesPlayed.Text = "0";
+            for (uint i = 0; i < NumSimulations.Value; i++)
+            {
+                _game = new Game();
+
+                while (!GameMaster.GetGameStatus(_game).HasValue)
+                {
+                    try
+                    {
+                        int boardX = 0, boardY = 0, pickX = 0, pickY = 0;
+
+                        await Task.Run(() =>
+                        {
+                            var thread = new Thread(() =>
+                            {
+                                do
+                                {
+                                    _playerAis[_game.CurrentPlayer].MakePick(_game, out boardX, out boardY, out pickX, out pickY);
+                                } while (!GameMaster.IsPickValid(_game, boardX, boardY, pickX, pickY));
+                            });
+
+                            thread.Start();
+
+                            if (!thread.Join(TimeSpan.FromMilliseconds(Settings.Default.MaxAiTime)))
+                            {
+                                thread.Abort();
+                                throw new OperationCanceledException();
+                            }
+                        });
+
+                        GameMaster.UpdateBoard(_game, boardX, boardY, pickX, pickY);
+                    }
+                    catch (OperationCanceledException)
+                    {
+                        if (_game.CurrentPlayer == Players.O)
+                        {
+                            xGames++;
+                        }
+                        else
+                        {
+                            oGames++;
+                        }
+                        continue;
+                    }
+                }
+
+                var gameStatus = GameMaster.GetGameStatus(_game);
+                if (gameStatus == GameStatuses.OWon)
+                {
+                    oGames++;
+                }
+                else if (gameStatus == GameStatuses.XWon)
+                {
+                    xGames++;
+                }
+                else
+                {
+                    ties++;
+                }
+
+                tbSimPlayerOWins.Text = oGames.ToString();
+                tbSimPlayerXWins.Text = xGames.ToString();
+                tbSimTies.Text = ties.ToString();
+                tbGamesPlayed.Text = (i + 1).ToString();
+            }
+
+            IsEnabled = true;
         }
 
         private async Task UpdateBoard()

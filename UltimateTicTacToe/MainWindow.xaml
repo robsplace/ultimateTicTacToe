@@ -10,9 +10,6 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30" />
-            <RowDefinition Height="30" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="30" />
         </Grid.RowDefinitions>
@@ -27,621 +24,661 @@
         <Button Name="RestartGameButton" Grid.Row="0" Grid.Column="1" Content="Restart Game" Width="100" Click="RestartGame" HorizontalAlignment="Center" VerticalAlignment="Center" IsEnabled="False" />
         <Button Grid.Row="0" Grid.Column="2" Content="Options" Width="100" Click="ModifyOptions" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,3,0" />
 
-        <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Margin="3" VerticalAlignment="Center">
+        <Grid Grid.Row="1" Grid.ColumnSpan="3" Name="gridVisibleGame">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <StackPanel Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Orientation="Horizontal">
-                <TextBlock FontSize="21" FontWeight="Bold" Text="X" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3,0,21,0" />
-                <TextBlock Name="txtPlayerX" Text="Player X" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
+            <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Margin="3" VerticalAlignment="Center">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Orientation="Horizontal">
+                    <TextBlock FontSize="21" FontWeight="Bold" Text="X" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3,0,21,0" />
+                    <TextBlock Name="txtPlayerX" Text="Player X" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
+                </StackPanel>
+
+                <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" Orientation="Horizontal" >
+                    <TextBlock Name="txtPlayerO" Text="Player O" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock FontSize="21" FontWeight="Bold" Text="O" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="21,0,3,0"/>
+                </StackPanel>
+
+            </Grid>
+
+            <Grid Name="game00" Grid.Row="1" Grid.Column="0" Margin="3">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Button Name="btn00" Grid.Row="0" Grid.Column="0" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn01" Grid.Row="0" Grid.Column="1" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn02" Grid.Row="0" Grid.Column="2" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn10" Grid.Row="1" Grid.Column="0" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn11" Grid.Row="1" Grid.Column="1" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn12" Grid.Row="1" Grid.Column="2" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn20" Grid.Row="2" Grid.Column="0" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn21" Grid.Row="2" Grid.Column="1" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn22" Grid.Row="2" Grid.Column="2" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+
+            </Grid>
+
+            <Grid Name="game01" Grid.Row="1" Grid.Column="1" Margin="3">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Button Name="btn03" Grid.Row="0" Grid.Column="0" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn04" Grid.Row="0" Grid.Column="1" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn05" Grid.Row="0" Grid.Column="2" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn13" Grid.Row="1" Grid.Column="0" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn14" Grid.Row="1" Grid.Column="1" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn15" Grid.Row="1" Grid.Column="2" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn23" Grid.Row="2" Grid.Column="0" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn24" Grid.Row="2" Grid.Column="1" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn25" Grid.Row="2" Grid.Column="2" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+
+            </Grid>
+
+            <Grid Name="game02" Grid.Row="1" Grid.Column="2" Margin="3">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Button Name="btn06" Grid.Row="0" Grid.Column="0" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn07" Grid.Row="0" Grid.Column="1" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn08" Grid.Row="0" Grid.Column="2" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn16" Grid.Row="1" Grid.Column="0" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn17" Grid.Row="1" Grid.Column="1" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn18" Grid.Row="1" Grid.Column="2" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn26" Grid.Row="2" Grid.Column="0" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn27" Grid.Row="2" Grid.Column="1" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn28" Grid.Row="2" Grid.Column="2" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+
+            </Grid>
+
+            <Grid Name="game10" Grid.Row="2" Grid.Column="0" Margin="3">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Button Name="btn30" Grid.Row="0" Grid.Column="0" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn31" Grid.Row="0" Grid.Column="1" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn32" Grid.Row="0" Grid.Column="2" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn40" Grid.Row="1" Grid.Column="0" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn41" Grid.Row="1" Grid.Column="1" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn42" Grid.Row="1" Grid.Column="2" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn50" Grid.Row="2" Grid.Column="0" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn51" Grid.Row="2" Grid.Column="1" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn52" Grid.Row="2" Grid.Column="2" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+
+            </Grid>
+
+            <Grid Name="game11" Grid.Row="2" Grid.Column="1" Margin="3">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Button Name="btn33" Grid.Row="0" Grid.Column="0"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn34" Grid.Row="0" Grid.Column="1"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn35" Grid.Row="0" Grid.Column="2"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn43" Grid.Row="1" Grid.Column="0"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn44" Grid.Row="1" Grid.Column="1"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn45" Grid.Row="1" Grid.Column="2"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn53" Grid.Row="2" Grid.Column="0"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn54" Grid.Row="2" Grid.Column="1"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn55" Grid.Row="2" Grid.Column="2"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+
+            </Grid>
+
+            <Grid Name="game12" Grid.Row="2" Grid.Column="2" Margin="3">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Button Name="btn36" Grid.Row="0" Grid.Column="0"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn37" Grid.Row="0" Grid.Column="1"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn38" Grid.Row="0" Grid.Column="2"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn46" Grid.Row="1" Grid.Column="0"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn47" Grid.Row="1" Grid.Column="1"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn48" Grid.Row="1" Grid.Column="2"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn56" Grid.Row="2" Grid.Column="0"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn57" Grid.Row="2" Grid.Column="1"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn58" Grid.Row="2" Grid.Column="2"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+
+            </Grid>
+
+            <Grid Name="game20" Grid.Row="3" Grid.Column="0" Margin="3">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Button Name="btn60" Grid.Row="0" Grid.Column="0"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn61" Grid.Row="0" Grid.Column="1"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn62" Grid.Row="0" Grid.Column="2"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn70" Grid.Row="1" Grid.Column="0"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn71" Grid.Row="1" Grid.Column="1"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn72" Grid.Row="1" Grid.Column="2"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn80" Grid.Row="2" Grid.Column="0"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn81" Grid.Row="2" Grid.Column="1"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn82" Grid.Row="2" Grid.Column="2"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+
+            </Grid>
+
+            <Grid Name="game21" Grid.Row="3" Grid.Column="1" Margin="3">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Button Name="btn63" Grid.Row="0" Grid.Column="0"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn64" Grid.Row="0" Grid.Column="1"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn65" Grid.Row="0" Grid.Column="2"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn73" Grid.Row="1" Grid.Column="0"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn74" Grid.Row="1" Grid.Column="1"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn75" Grid.Row="1" Grid.Column="2"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn83" Grid.Row="2" Grid.Column="0"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn84" Grid.Row="2" Grid.Column="1"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn85" Grid.Row="2" Grid.Column="2"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+
+            </Grid>
+
+            <Grid Name="game22" Grid.Row="3" Grid.Column="3" Margin="3">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Button Name="btn66" Grid.Row="0" Grid.Column="0"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn67" Grid.Row="0" Grid.Column="1"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn68" Grid.Row="0" Grid.Column="2"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn76" Grid.Row="1" Grid.Column="0"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn77" Grid.Row="1" Grid.Column="1"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn78" Grid.Row="1" Grid.Column="2"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn86" Grid.Row="2" Grid.Column="0"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn87" Grid.Row="2" Grid.Column="1"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+                <Button Name="btn88" Grid.Row="2" Grid.Column="2"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                    <Viewbox Stretch="Fill">
+                        <TextBlock />
+                    </Viewbox>
+                </Button>
+
+            </Grid>
+
+            <Viewbox Stretch="Fill" Grid.Row="1" Grid.Column="0">
+                <TextBlock Name="txtBoardStatus00" FontWeight="Bold" Visibility="Hidden"/>
+            </Viewbox>
+
+            <Viewbox Stretch="Fill" Grid.Row="1" Grid.Column="1">
+                <TextBlock Name="txtBoardStatus01" FontWeight="Bold" Visibility="Hidden"/>
+            </Viewbox>
+
+            <Viewbox Stretch="Fill" Grid.Row="1" Grid.Column="2">
+                <TextBlock Name="txtBoardStatus02" FontWeight="Bold" Visibility="Hidden"/>
+            </Viewbox>
+
+            <Viewbox Stretch="Fill" Grid.Row="2" Grid.Column="0">
+                <TextBlock Name="txtBoardStatus10" FontWeight="Bold" Visibility="Hidden"/>
+            </Viewbox>
+
+            <Viewbox Stretch="Fill" Grid.Row="2" Grid.Column="1">
+                <TextBlock Name="txtBoardStatus11" FontWeight="Bold" Visibility="Hidden"/>
+            </Viewbox>
+
+            <Viewbox Stretch="Fill" Grid.Row="2" Grid.Column="2">
+                <TextBlock Name="txtBoardStatus12" FontWeight="Bold" Visibility="Hidden"/>
+            </Viewbox>
+
+            <Viewbox Stretch="Fill" Grid.Row="3" Grid.Column="0">
+                <TextBlock Name="txtBoardStatus20" FontWeight="Bold" Visibility="Hidden"/>
+            </Viewbox>
+
+            <Viewbox Stretch="Fill" Grid.Row="3" Grid.Column="1">
+                <TextBlock Name="txtBoardStatus21" FontWeight="Bold" Visibility="Hidden"/>
+            </Viewbox>
+
+            <Viewbox Stretch="Fill" Grid.Row="3" Grid.Column="2">
+                <TextBlock Name="txtBoardStatus22" FontWeight="Bold" Visibility="Hidden"/>
+            </Viewbox>
+
+        </Grid>
+
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Vertical" Grid.Row="1" Grid.ColumnSpan="3" Name="gridSimulation" Visibility="Collapsed">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Games played: " />
+                <TextBlock Name="tbGamesPlayed" Text="0" />
+                <TextBlock Text="/" />
+                <TextBlock Name="tbTotalGames" Text="0" />
             </StackPanel>
-
-            <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" Orientation="Horizontal" >
-                <TextBlock Name="txtPlayerO" Text="Player O" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <TextBlock FontSize="21" FontWeight="Bold" Text="O" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="21,0,3,0"/>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Name="tbSimPlayerX" Text="Player X" />
+                <TextBlock Text=" wins: " />
+                <TextBlock Name="tbSimPlayerXWins" Text="0" />
             </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Name="tbSimPlayerO" Text="Player O" />
+                <TextBlock Text=" wins: " />
+                <TextBlock Name="tbSimPlayerOWins" Text="0" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Ties: " />
+                <TextBlock Name="tbSimTies" Text="0" />
+            </StackPanel>
+        </StackPanel>
 
-        </Grid>
-
-        <Grid Name="game00" Grid.Row="2" Grid.Column="0" Margin="3">
-
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-
-            <Button Name="btn00" Grid.Row="0" Grid.Column="0" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn01" Grid.Row="0" Grid.Column="1" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn02" Grid.Row="0" Grid.Column="2" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn10" Grid.Row="1" Grid.Column="0" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn11" Grid.Row="1" Grid.Column="1" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn12" Grid.Row="1" Grid.Column="2" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn20" Grid.Row="2" Grid.Column="0" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn21" Grid.Row="2" Grid.Column="1" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn22" Grid.Row="2" Grid.Column="2" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-
-        </Grid>
-
-        <Grid Name="game01" Grid.Row="2" Grid.Column="1" Margin="3">
-
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-
-            <Button Name="btn03" Grid.Row="0" Grid.Column="0" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn04" Grid.Row="0" Grid.Column="1" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn05" Grid.Row="0" Grid.Column="2" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn13" Grid.Row="1" Grid.Column="0" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn14" Grid.Row="1" Grid.Column="1" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn15" Grid.Row="1" Grid.Column="2" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn23" Grid.Row="2" Grid.Column="0" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn24" Grid.Row="2" Grid.Column="1" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn25" Grid.Row="2" Grid.Column="2" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-
-        </Grid>
-
-        <Grid Name="game02" Grid.Row="2" Grid.Column="2" Margin="3">
-
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-
-            <Button Name="btn06" Grid.Row="0" Grid.Column="0" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn07" Grid.Row="0" Grid.Column="1" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn08" Grid.Row="0" Grid.Column="2" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn16" Grid.Row="1" Grid.Column="0" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn17" Grid.Row="1" Grid.Column="1" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn18" Grid.Row="1" Grid.Column="2" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn26" Grid.Row="2" Grid.Column="0" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn27" Grid.Row="2" Grid.Column="1" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn28" Grid.Row="2" Grid.Column="2" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-
-        </Grid>
-
-        <Grid Name="game10" Grid.Row="3" Grid.Column="0" Margin="3">
-
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-
-            <Button Name="btn30" Grid.Row="0" Grid.Column="0" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn31" Grid.Row="0" Grid.Column="1" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn32" Grid.Row="0" Grid.Column="2" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn40" Grid.Row="1" Grid.Column="0" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn41" Grid.Row="1" Grid.Column="1" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn42" Grid.Row="1" Grid.Column="2" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn50" Grid.Row="2" Grid.Column="0" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn51" Grid.Row="2" Grid.Column="1" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn52" Grid.Row="2" Grid.Column="2" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-
-        </Grid>
-
-        <Grid Name="game11" Grid.Row="3" Grid.Column="1" Margin="3">
-
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-
-            <Button Name="btn33" Grid.Row="0" Grid.Column="0"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn34" Grid.Row="0" Grid.Column="1"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn35" Grid.Row="0" Grid.Column="2"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn43" Grid.Row="1" Grid.Column="0"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn44" Grid.Row="1" Grid.Column="1"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn45" Grid.Row="1" Grid.Column="2"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn53" Grid.Row="2" Grid.Column="0"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn54" Grid.Row="2" Grid.Column="1"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn55" Grid.Row="2" Grid.Column="2"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-
-        </Grid>
-
-        <Grid Name="game12" Grid.Row="3" Grid.Column="2" Margin="3">
-
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-
-            <Button Name="btn36" Grid.Row="0" Grid.Column="0"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn37" Grid.Row="0" Grid.Column="1"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn38" Grid.Row="0" Grid.Column="2"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn46" Grid.Row="1" Grid.Column="0"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn47" Grid.Row="1" Grid.Column="1"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn48" Grid.Row="1" Grid.Column="2"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn56" Grid.Row="2" Grid.Column="0"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn57" Grid.Row="2" Grid.Column="1"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn58" Grid.Row="2" Grid.Column="2"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-
-        </Grid>
-
-        <Grid Name="game20" Grid.Row="4" Grid.Column="0" Margin="3">
-
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-
-            <Button Name="btn60" Grid.Row="0" Grid.Column="0"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn61" Grid.Row="0" Grid.Column="1"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn62" Grid.Row="0" Grid.Column="2"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn70" Grid.Row="1" Grid.Column="0"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn71" Grid.Row="1" Grid.Column="1"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn72" Grid.Row="1" Grid.Column="2"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn80" Grid.Row="2" Grid.Column="0"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn81" Grid.Row="2" Grid.Column="1"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn82" Grid.Row="2" Grid.Column="2"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-
-        </Grid>
-
-        <Grid Name="game21" Grid.Row="4" Grid.Column="1" Margin="3">
-
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-
-            <Button Name="btn63" Grid.Row="0" Grid.Column="0"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn64" Grid.Row="0" Grid.Column="1"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn65" Grid.Row="0" Grid.Column="2"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn73" Grid.Row="1" Grid.Column="0"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn74" Grid.Row="1" Grid.Column="1"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn75" Grid.Row="1" Grid.Column="2"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn83" Grid.Row="2" Grid.Column="0"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn84" Grid.Row="2" Grid.Column="1"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn85" Grid.Row="2" Grid.Column="2"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-
-        </Grid>
-
-        <Grid Name="game22" Grid.Row="4" Grid.Column="3" Margin="3">
-
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-
-            <Button Name="btn66" Grid.Row="0" Grid.Column="0"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn67" Grid.Row="0" Grid.Column="1"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn68" Grid.Row="0" Grid.Column="2"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn76" Grid.Row="1" Grid.Column="0"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn77" Grid.Row="1" Grid.Column="1"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn78" Grid.Row="1" Grid.Column="2"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn86" Grid.Row="2" Grid.Column="0"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn87" Grid.Row="2" Grid.Column="1"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-            <Button Name="btn88" Grid.Row="2" Grid.Column="2"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
-                <Viewbox Stretch="Fill">
-                    <TextBlock />
-                </Viewbox>
-            </Button>
-
-        </Grid>
-
-        <Viewbox Stretch="Fill" Grid.Row="2" Grid.Column="0">
-            <TextBlock Name="txtBoardStatus00" FontWeight="Bold" Visibility="Hidden"/>
-        </Viewbox>
-
-        <Viewbox Stretch="Fill" Grid.Row="2" Grid.Column="1">
-            <TextBlock Name="txtBoardStatus01" FontWeight="Bold" Visibility="Hidden"/>
-        </Viewbox>
-
-        <Viewbox Stretch="Fill" Grid.Row="2" Grid.Column="2">
-            <TextBlock Name="txtBoardStatus02" FontWeight="Bold" Visibility="Hidden"/>
-        </Viewbox>
-
-        <Viewbox Stretch="Fill" Grid.Row="3" Grid.Column="0">
-            <TextBlock Name="txtBoardStatus10" FontWeight="Bold" Visibility="Hidden"/>
-        </Viewbox>
-
-        <Viewbox Stretch="Fill" Grid.Row="3" Grid.Column="1">
-            <TextBlock Name="txtBoardStatus11" FontWeight="Bold" Visibility="Hidden"/>
-        </Viewbox>
-
-        <Viewbox Stretch="Fill" Grid.Row="3" Grid.Column="2">
-            <TextBlock Name="txtBoardStatus12" FontWeight="Bold" Visibility="Hidden"/>
-        </Viewbox>
-
-        <Viewbox Stretch="Fill" Grid.Row="4" Grid.Column="0">
-            <TextBlock Name="txtBoardStatus20" FontWeight="Bold" Visibility="Hidden"/>
-        </Viewbox>
-
-        <Viewbox Stretch="Fill" Grid.Row="4" Grid.Column="1">
-            <TextBlock Name="txtBoardStatus21" FontWeight="Bold" Visibility="Hidden"/>
-        </Viewbox>
-
-        <Viewbox Stretch="Fill" Grid.Row="4" Grid.Column="2">
-            <TextBlock Name="txtBoardStatus22" FontWeight="Bold" Visibility="Hidden"/>
-        </Viewbox>
-
-        <TextBlock Name="txtGameStatus" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center" Text="" />
+        <TextBlock Name="txtGameStatus" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center" Text="" />
         <!--<ProgressBar Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" Foreground="DarkTurquoise" Maximum="100" Minimum="0" Value="100" Margin="3" />0-->
 
     </Grid>
+
 </Window>
