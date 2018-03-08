@@ -178,16 +178,26 @@ namespace UltimateTicTacToe
 
             try
             {
-                var cts = new CancellationTokenSource();
-                cts.CancelAfter(Settings.Default.MaxAiTime);
                 int boardX = 0, boardY = 0, pickX = 0, pickY = 0;
+
                 Task makePick = Task.Run(() =>
                 {
-                    do
+                    var thread = new Thread(() =>
                     {
-                        _playerAis[_game.CurrentPlayer].MakePick(_game, out boardX, out boardY, out pickX, out pickY);
-                    } while (!GameMaster.IsPickValid(_game, boardX, boardY, pickX, pickY));
-                }, cts.Token);
+                        do
+                        {
+                            _playerAis[_game.CurrentPlayer].MakePick(_game, out boardX, out boardY, out pickX, out pickY);
+                        } while (!GameMaster.IsPickValid(_game, boardX, boardY, pickX, pickY));
+                    });
+
+                    thread.Start();
+
+                    if (!thread.Join(TimeSpan.FromMilliseconds(Settings.Default.MaxAiTime)))
+                    {
+                        thread.Abort();
+                        throw new OperationCanceledException();
+                    }
+                });
                 
                 await Task.WhenAll(makePick, Task.Delay(Settings.Default.MinAiTime));
 
