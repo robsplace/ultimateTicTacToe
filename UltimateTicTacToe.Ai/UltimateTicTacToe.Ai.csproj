@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Minimax.cs" />
     <Compile Include="MinimaxMandy.cs" />
     <Compile Include="PredictablePriya.cs" />
     <Compile Include="RandomRandy.cs" />
