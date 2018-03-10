@@ -28,5 +28,9 @@ namespace UltimateTicTacToe.Ai
             pickX = Random.Next(3);
             pickY = Random.Next(3);
         }
+
+        public void Cancel()
+        {
+        }
     }
 }

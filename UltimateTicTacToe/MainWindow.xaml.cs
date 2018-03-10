@@ -52,9 +52,11 @@ namespace UltimateTicTacToe
                 txtPlayerO.Text = ngd.PlayerOName;
                 tbSimPlayerX.Text = ngd.PlayerXName;
                 tbSimPlayerO.Text = ngd.PlayerOName;
-                _playerAis[Players.X] = ngd.PlayerX; // ngd.PlayerXType == null ? null : (IGameAi)Activator.CreateInstance(ngd.PlayerXType);
-                _playerAis[Players.O] = ngd.PlayerO; // PlayerOType == null ? null : (IGameAi)Activator.CreateInstance(ngd.PlayerOType);
+                _playerAis[Players.X] = ngd.PlayerX;
+                _playerAis[Players.O] = ngd.PlayerO;
                 NumSimulations = ngd.NumSimulations;
+
+                txtGameStatus.Text = string.Empty;
 
                 if (NumSimulations.HasValue)
                 {
@@ -75,15 +77,12 @@ namespace UltimateTicTacToe
         private async Task SimulateGames()
         {
             IsEnabled = false;
+            txtGameStatus.Visibility = Visibility.Collapsed;
+            pbTimer.Visibility = Visibility.Visible;
+            pbTimer.Maximum = Settings.Default.MaxAiTime / 1000;
             tbTotalGames.Text = NumSimulations.ToString();
-            if (_playerAis[Players.X] != null)
-            {
-                tbSimPlayerXType.Text = string.Format("{0} ({1})", _playerAis[Players.X].GetType().Name, _playerAis[Players.X].GetType().Namespace);
-            }
-            if (_playerAis[Players.O] != null)
-            {
-                tbSimPlayerOType.Text = string.Format("{0} ({1})", _playerAis[Players.O].GetType().Name, _playerAis[Players.O].GetType().Namespace);
-            }
+            tbSimPlayerXType.Text = string.Format("{0} ({1})", _playerAis[Players.X].GetType().Name, _playerAis[Players.X].GetType().Namespace);
+            tbSimPlayerOType.Text = string.Format("{0} ({1})", _playerAis[Players.O].GetType().Name, _playerAis[Players.O].GetType().Namespace);
             int xGames = 0, oGames = 0, ties = 0;
 
             tbGamesPlayed.Text = "0";
@@ -93,42 +92,52 @@ namespace UltimateTicTacToe
 
                 while (!GameMaster.GetGameStatus(_game).HasValue)
                 {
-                    try
+                    pbTimer.Value = pbTimer.Maximum;
+                    using (var timer = new System.Windows.Forms.Timer())
                     {
-                        int boardX = 0, boardY = 0, pickX = 0, pickY = 0;
-
-                        await Task.Run(() =>
+                        var startTime = DateTime.Now;
+                        timer.Interval = 1000;
+                        timer.Tick += new EventHandler((sender, e) => { pbTimer.Value = pbTimer.Maximum - (DateTime.Now - startTime).TotalSeconds; });
+                        timer.Start();
+                        try
                         {
-                            var thread = new Thread(() =>
+                            int boardX = 0, boardY = 0, pickX = 0, pickY = 0;
+
+                            await Task.Run(() =>
                             {
-                                do
+                                var thread = new Thread(() =>
                                 {
-                                    _playerAis[_game.CurrentPlayer].MakePick(_game, out boardX, out boardY, out pickX, out pickY);
-                                } while (!GameMaster.IsPickValid(_game, boardX, boardY, pickX, pickY));
+                                    do
+                                    {
+                                        _playerAis[_game.CurrentPlayer].MakePick(_game, out boardX, out boardY, out pickX, out pickY);
+                                    } while (!GameMaster.IsPickValid(_game, boardX, boardY, pickX, pickY));
+                                });
+
+                                thread.Start();
+
+                                if (!thread.Join(TimeSpan.FromMilliseconds(Settings.Default.MaxAiTime)))
+                                {
+                                    thread.Abort();
+                                    _playerAis[_game.CurrentPlayer].Cancel();
+                                    throw new OperationCanceledException();
+                                }
                             });
 
-                            thread.Start();
-
-                            if (!thread.Join(TimeSpan.FromMilliseconds(Settings.Default.MaxAiTime)))
+                            GameMaster.UpdateBoard(_game, boardX, boardY, pickX, pickY);
+                        }
+                        catch (OperationCanceledException)
+                        {
+                            if (_game.CurrentPlayer == Players.O)
                             {
-                                thread.Abort();
-                                throw new OperationCanceledException();
+                                xGames++;
                             }
-                        });
-
-                        GameMaster.UpdateBoard(_game, boardX, boardY, pickX, pickY);
-                    }
-                    catch (OperationCanceledException)
-                    {
-                        if (_game.CurrentPlayer == Players.O)
-                        {
-                            xGames++;
+                            else
+                            {
+                                oGames++;
+                            }
+                            continue;
                         }
-                        else
-                        {
-                            oGames++;
-                        }
-                        continue;
+                        timer.Stop();
                     }
                 }
 
@@ -148,12 +157,20 @@ namespace UltimateTicTacToe
 
                 tbSimPlayerOWins.Text = oGames.ToString();
                 tbSimPlayerXWins.Text = xGames.ToString();
-                
+
                 tbSimTies.Text = ties.ToString();
                 tbGamesPlayed.Text = (i + 1).ToString();
             }
 
+            txtGameStatus.Visibility = Visibility.Visible;
+            pbTimer.Visibility = Visibility.Collapsed;
+
             IsEnabled = true;
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private async Task UpdateBoard()
@@ -295,32 +312,43 @@ namespace UltimateTicTacToe
             }
 
             IsEnabled = false;
+            txtGameStatus.Visibility = Visibility.Collapsed;
+            pbTimer.Visibility = Visibility.Visible;
+            pbTimer.Maximum = Settings.Default.MaxAiTime / 1000;
 
             try
             {
                 int boardX = 0, boardY = 0, pickX = 0, pickY = 0;
-
-                Task makePick = Task.Run(() =>
+                pbTimer.Value = pbTimer.Maximum;
+                using (var timer = new System.Windows.Forms.Timer())
                 {
-                    var thread = new Thread(() =>
+                    timer.Interval = 1000;
+                    var startTime = DateTime.Now;
+                    timer.Tick += new EventHandler((sender, e) => { pbTimer.Value = pbTimer.Maximum - (DateTime.Now - startTime).TotalSeconds; });
+                    timer.Start();
+                    Task makePick = Task.Run(() =>
                     {
-                        do
+                        var thread = new Thread(() =>
                         {
-                            _playerAis[_game.CurrentPlayer].MakePick(_game, out boardX, out boardY, out pickX, out pickY);
-                        } while (!GameMaster.IsPickValid(_game, boardX, boardY, pickX, pickY));
+                            do
+                            {
+                                _playerAis[_game.CurrentPlayer].MakePick(_game, out boardX, out boardY, out pickX, out pickY);
+                            } while (!GameMaster.IsPickValid(_game, boardX, boardY, pickX, pickY));
+                        });
+
+                        thread.Start();
+
+                        if (!thread.Join(TimeSpan.FromMilliseconds(Settings.Default.MaxAiTime)))
+                        {
+                            thread.Abort();
+                            _playerAis[_game.CurrentPlayer].Cancel();
+                            throw new OperationCanceledException();
+                        }
                     });
 
-                    thread.Start();
-
-                    if (!thread.Join(TimeSpan.FromMilliseconds(Settings.Default.MaxAiTime)))
-                    {
-                        thread.Abort();
-                        throw new OperationCanceledException();
-                    }
-                });
-
-                await Task.WhenAll(makePick, Task.Delay(Settings.Default.MinAiTime));
-
+                    await Task.WhenAll(makePick, Task.Delay(Settings.Default.MinAiTime));
+                    timer.Stop();
+                }
                 GameMaster.UpdateBoard(_game, boardX, boardY, pickX, pickY);
             }
             catch (OperationCanceledException)
@@ -336,6 +364,8 @@ namespace UltimateTicTacToe
             }
             finally
             {
+                txtGameStatus.Visibility = Visibility.Visible;
+                pbTimer.Visibility = Visibility.Collapsed;
                 IsEnabled = true;
             }
 
@@ -488,6 +518,7 @@ namespace UltimateTicTacToe
         private async void RestartGame(object sender, RoutedEventArgs e)
         {
             _game = new Game();
+            txtGameStatus.Text = string.Empty;
             await UpdateBoard();
         }
 

@@ -43,7 +43,7 @@ namespace UltimateTicTacToe
             int maxAiTime;
             if (!int.TryParse(tbMaxAiTime.Text, out maxAiTime)
                 || maxAiTime <= minAiTime
-                || maxAiTime > 60000)
+                || maxAiTime > 600000)
             {
                 System.Windows.MessageBox.Show("Maximum AI Time must be a value between Minimum AI Time and 60000");
                 return;

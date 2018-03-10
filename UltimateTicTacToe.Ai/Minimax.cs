@@ -14,7 +14,7 @@ namespace UltimateTicTacToe.Ai
     {
         public int MinDifficulty => 1;
 
-        public int MaxDifficulty => 5;
+        public int MaxDifficulty => 6;
 
         public int Difficulty { get; set; }
 
@@ -22,13 +22,15 @@ namespace UltimateTicTacToe.Ai
         abstract protected int MAXIMUM_UTILITY { get; }
         abstract protected int MINIMUM_UTILITY { get; }
 
+        private List<Thread> _threads = null;
+
         public void MakePick(Game game, out int boardX, out int boardY, out int pickX, out int pickY)
         {
             boardX = boardY = pickX = pickY = 0;
             int bestScore = Int32.MinValue;
             List<Tuple<int, int, int, int>> bestResults = new List<Tuple<int, int, int, int>>();
             var children = new Dictionary<Game, Tuple<int, int, int, int>>();
-            var threads = new List<Thread>();
+            _threads = new List<Thread>();
             var results = new List<Tuple<int, int, int, int, int>>();
 
             for (int i = 0; i < 3; i++)
@@ -57,10 +59,10 @@ namespace UltimateTicTacToe.Ai
                     results.Add(new Tuple<int, int, int, int, int>(children[child].Item1, children[child].Item2, children[child].Item3, children[child].Item4, GetMinimax(child, game.CurrentPlayer)));
                 });
                 thread.Start();
-                threads.Add(thread);
+                _threads.Add(thread);
             }
 
-            foreach (var thread in threads)
+            foreach (var thread in _threads)
             {
                 thread.Join();
             }
@@ -170,5 +172,13 @@ namespace UltimateTicTacToe.Ai
         }
 
         abstract protected int Utility(Game game, Players player);
+
+        public void Cancel()
+        {
+            foreach (var thread in _threads)
+            {
+                thread.Abort();
+            }
+        }
     }
 }

@@ -17,6 +17,10 @@ namespace UltimateTicTacToe.Ai
 
         public int Difficulty { get => 1; set { } }
 
+        public void Cancel()
+        {
+        }
+
         public void MakePick(Game game, out int boardX, out int boardY, out int pickX, out int pickY)
         {
             boardX = 0;

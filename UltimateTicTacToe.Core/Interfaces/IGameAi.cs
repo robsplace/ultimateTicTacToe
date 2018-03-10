@@ -13,5 +13,6 @@ namespace UltimateTicTacToe.Core.Interfaces
         int MinDifficulty { get; }
         int MaxDifficulty { get; }
         int Difficulty { get; set; }
+        void Cancel();
     }
 }
