@@ -4,7 +4,7 @@ using UltimateTicTacToe.Core.Interfaces;
 
 namespace UltimateTicTacToe.Ai
 {
-    public class PredictablePriya : IGameAi
+    public sealed class PredictablePriya : IGameAi
     {
         public int MinDifficulty => 1;
 

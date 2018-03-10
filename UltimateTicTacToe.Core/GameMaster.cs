@@ -3,9 +3,14 @@ using UltimateTicTacToe.Core.Entities;
 
 namespace UltimateTicTacToe.Core
 {
-    // this project is too small to overthink the design - just have one class that does all the BL in static functions
+    /// <summary>
+    /// Static class of functions useful for managing a game of Ultimate Tic Tac Toe.
+    /// </summary>
     public static class GameMaster
     {
+        /// <summary>
+        /// All of the winning game configurations possible for a game of Tic Tac Toe
+        /// </summary>
         private static readonly Tuple<int[], int[], int[]>[] _winningGameConfigurations = new Tuple<int[], int[], int[]>[]
         {
             new Tuple<int[], int[], int[]>(new int[] {0, 0}, new int[] {0, 1}, new int[] {0, 2}),
@@ -18,6 +23,14 @@ namespace UltimateTicTacToe.Core
             new Tuple<int[], int[], int[]>(new int[] {0, 2}, new int[] {1, 1}, new int[] {2, 0}),
         };
 
+        /// <summary>
+        /// Update the game with the given move.
+        /// </summary>
+        /// <param name="game"></param>
+        /// <param name="boardXIndex"></param>
+        /// <param name="boardYIndex"></param>
+        /// <param name="pickXIndex"></param>
+        /// <param name="pickYIndex"></param>
         public static void UpdateBoard(Game game, int boardXIndex, int boardYIndex, int pickXIndex, int pickYIndex)
         {
             if (boardXIndex < 0 || boardXIndex > 2
@@ -43,6 +56,15 @@ namespace UltimateTicTacToe.Core
             game.CurrentPlayer = game.CurrentPlayer == Players.X ? Players.O : Players.X;
         }
 
+        /// <summary>
+        /// Returns whether the given pick is valid or not for the game.
+        /// </summary>
+        /// <param name="game"></param>
+        /// <param name="boardXIndex"></param>
+        /// <param name="boardYIndex"></param>
+        /// <param name="pickXIndex"></param>
+        /// <param name="pickYIndex"></param>
+        /// <returns></returns>
         public static bool IsPickValid(Game game, int boardXIndex, int boardYIndex, int pickXIndex, int pickYIndex)
         {
             if (boardXIndex < 0 || boardXIndex > 2
@@ -113,6 +135,11 @@ namespace UltimateTicTacToe.Core
             return GameStatuses.Tie;
         }
 
+        /// <summary>
+        /// Get the game status of the _whole_ game.
+        /// </summary>
+        /// <param name="game"></param>
+        /// <returns></returns>
         public static GameStatuses? GetGameStatus(Game game)
         {
             var boardStatuses = new GameStatuses?[3, 3];
@@ -163,6 +190,13 @@ namespace UltimateTicTacToe.Core
             return previousResult;
         }
 
+        /// <summary>
+        /// Return true if all three players are the same (with ties being wildcards).
+        /// </summary>
+        /// <param name="player0"></param>
+        /// <param name="player1"></param>
+        /// <param name="player2"></param>
+        /// <returns></returns>
         private static GameStatuses? GetGameStatus(Players? player0, Players? player1, Players? player2)
         {
             GameStatuses? gameStatus0 = null, gameStatus1 = null, gameStatus2 = null;
@@ -206,6 +240,13 @@ namespace UltimateTicTacToe.Core
             return GetGameStatus(gameStatus0, gameStatus1, gameStatus2);
         }
 
+        /// <summary>
+        /// Returns true if all three game statuses are the same (with ties being wildcards).
+        /// </summary>
+        /// <param name="status0"></param>
+        /// <param name="status1"></param>
+        /// <param name="status2"></param>
+        /// <returns></returns>
         private static GameStatuses? GetGameStatus(GameStatuses? status0, GameStatuses? status1, GameStatuses? status2)
         {
             // make sure each cell has a value

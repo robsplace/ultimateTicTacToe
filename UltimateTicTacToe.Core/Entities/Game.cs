@@ -5,10 +5,19 @@ namespace UltimateTicTacToe.Core.Entities
 {
     public class Game : ICloneable
     {
+        /// <summary>
+        /// The player whose turn it is.
+        /// </summary>
         public Players CurrentPlayer { get; set; } = Players.X;
 
+        /// <summary>
+        /// The board, where null means nobody has selected that spot.
+        /// </summary>
         public Players?[,,,] Board { get; } = new Players?[3, 3, 3, 3];
 
+        /// <summary>
+        /// The last move made by the opponent.
+        /// </summary>
         public Tuple<int, int, int, int> LastPlay { get; set; } = null;
 
         public object Clone()
