@@ -662,12 +662,16 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Name="tbSimPlayerX" Text="Player X" />
-                <TextBlock Text=" wins: " />
+                <TextBlock Text=" (" />
+                <TextBlock Name="tbSimPlayerXType" Text="Human" />
+                <TextBlock Text=") wins:" />
                 <TextBlock Name="tbSimPlayerXWins" Text="0" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Name="tbSimPlayerO" Text="Player O" />
-                <TextBlock Text=" wins: " />
+                <TextBlock Text=" (" />
+                <TextBlock Name="tbSimPlayerOType" Text="Human" />
+                <TextBlock Text=") wins:" />
                 <TextBlock Name="tbSimPlayerOWins" Text="0" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">

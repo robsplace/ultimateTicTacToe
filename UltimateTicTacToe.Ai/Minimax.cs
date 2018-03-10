@@ -67,6 +67,12 @@ namespace UltimateTicTacToe.Ai
 
             foreach (var result in results)
             {
+                // idk ytf result is null sometimes but i'm too past the ballmer peak to implement anything but a workaround and null reference exceptions aren't cool
+                if (result == null)
+                {
+                    continue;
+                }
+
                 var bestCaseScore = result.Item5;
 
                 if (bestCaseScore > bestScore)

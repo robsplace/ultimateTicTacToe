@@ -76,6 +76,14 @@ namespace UltimateTicTacToe
         {
             IsEnabled = false;
             tbTotalGames.Text = NumSimulations.ToString();
+            if (_playerAis[Players.X] != null)
+            {
+                tbSimPlayerXType.Text = string.Format("{0} ({1})", _playerAis[Players.X].GetType().Name, _playerAis[Players.X].GetType().Namespace);
+            }
+            if (_playerAis[Players.O] != null)
+            {
+                tbSimPlayerOType.Text = string.Format("{0} ({1})", _playerAis[Players.O].GetType().Name, _playerAis[Players.O].GetType().Namespace);
+            }
             int xGames = 0, oGames = 0, ties = 0;
 
             tbGamesPlayed.Text = "0";
@@ -140,6 +148,7 @@ namespace UltimateTicTacToe
 
                 tbSimPlayerOWins.Text = oGames.ToString();
                 tbSimPlayerXWins.Text = xGames.ToString();
+                
                 tbSimTies.Text = ties.ToString();
                 tbGamesPlayed.Text = (i + 1).ToString();
             }
