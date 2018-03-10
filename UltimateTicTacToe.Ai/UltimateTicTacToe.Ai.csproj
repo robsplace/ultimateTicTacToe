@@ -40,10 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AbstractMinimaxMandy.cs" />
-    <Compile Include="MinimaxMandyLvl3.cs" />
-    <Compile Include="MinimaxMandyLvl2.cs" />
-    <Compile Include="MinimaxMandyLvl1.cs" />
+    <Compile Include="MinimaxMandy.cs" />
     <Compile Include="PredictablePriya.cs" />
     <Compile Include="RandomRandy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

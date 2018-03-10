@@ -7,6 +7,12 @@ namespace UltimateTicTacToe.Ai
 {
     public class RandomRandy : IGameAi
     {
+        public int MinDifficulty => 1;
+
+        public int MaxDifficulty => 1;
+
+        public int Difficulty { get => 1; set { } }
+
         private Random Random;
 
         public RandomRandy()

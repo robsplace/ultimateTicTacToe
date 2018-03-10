@@ -11,6 +11,12 @@ namespace UltimateTicTacToe.Ai
 {
     public class PredictablePriya : IGameAi
     {
+        public int MinDifficulty => 1;
+
+        public int MaxDifficulty => 1;
+
+        public int Difficulty { get => 1; set { } }
+
         public void MakePick(Game game, out int boardX, out int boardY, out int pickX, out int pickY)
         {
             boardX = 0;

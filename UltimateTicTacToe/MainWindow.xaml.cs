@@ -43,7 +43,7 @@ namespace UltimateTicTacToe
 
         private async void btnNewGame_Click(object sender, RoutedEventArgs e)
         {
-            NewGameDialog ngd = new NewGameDialog(_pluginTypes, txtPlayerX.Text, txtPlayerO.Text, _playerAis[Players.X]?.GetType(), _playerAis[Players.O]?.GetType(), NumSimulations);
+            NewGameDialog ngd = new NewGameDialog(_pluginTypes, txtPlayerX.Text, txtPlayerO.Text, _playerAis[Players.X]?.GetType(), _playerAis[Players.O]?.GetType(), _playerAis[Players.X]?.Difficulty ?? 1, _playerAis[Players.O]?.Difficulty ?? 1, NumSimulations);
             if (ngd.ShowDialog() == true) // this looks stupid but easy way to check for truthy since ShowDialog returns bool?
             {
                 RestartGameButton.IsEnabled = true;
@@ -52,8 +52,8 @@ namespace UltimateTicTacToe
                 txtPlayerO.Text = ngd.PlayerOName;
                 tbSimPlayerX.Text = ngd.PlayerXName;
                 tbSimPlayerO.Text = ngd.PlayerOName;
-                _playerAis[Players.X] = ngd.PlayerXType == null ? null : (IGameAi)Activator.CreateInstance(ngd.PlayerXType);
-                _playerAis[Players.O] = ngd.PlayerOType == null ? null : (IGameAi)Activator.CreateInstance(ngd.PlayerOType);
+                _playerAis[Players.X] = ngd.PlayerX; // ngd.PlayerXType == null ? null : (IGameAi)Activator.CreateInstance(ngd.PlayerXType);
+                _playerAis[Players.O] = ngd.PlayerO; // PlayerOType == null ? null : (IGameAi)Activator.CreateInstance(ngd.PlayerOType);
                 NumSimulations = ngd.NumSimulations;
 
                 if (NumSimulations.HasValue)
@@ -290,7 +290,7 @@ namespace UltimateTicTacToe
                         throw new OperationCanceledException();
                     }
                 });
-                
+
                 await Task.WhenAll(makePick, Task.Delay(Settings.Default.MinAiTime));
 
                 GameMaster.UpdateBoard(_game, boardX, boardY, pickX, pickY);

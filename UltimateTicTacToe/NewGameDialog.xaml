@@ -14,10 +14,11 @@
                 <Grid.RowDefinitions>
                     <RowDefinition />
                     <RowDefinition />
+                    <RowDefinition />
                 </Grid.RowDefinitions>
                 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="75" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
@@ -27,8 +28,11 @@
 
                 <TextBlock Text="Type: " Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" Margin="0,0,5,0" />
 
-                <ComboBox Name="cbPlayerXType" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Width="300" SelectedValuePath="Key" DisplayMemberPath="Value" />
+                <ComboBox Name="cbPlayerXType" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Width="300" SelectedValuePath="Key" DisplayMemberPath="Value" SelectionChanged="cbPlayerXType_SelectionChanged" />
+
+                <TextBlock Text="Difficulty: " Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" Margin="0,0,5,0" />
                 
+                <Slider Name="slPlayerXDifficulty" Minimum="1" Maximum="1"  Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" Width="300" VerticalAlignment="Top" TickPlacement="BottomRight" Interval="1" IsSnapToTickEnabled="True" />
             </Grid>
         </GroupBox>
 
@@ -38,10 +42,11 @@
                 <Grid.RowDefinitions>
                     <RowDefinition />
                     <RowDefinition />
+                    <RowDefinition />
                 </Grid.RowDefinitions>
                 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="75" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
@@ -51,8 +56,12 @@
 
                 <TextBlock Text="Type: " Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" Margin="0,0,5,0" />
 
-                <ComboBox Name="cbPlayerOType" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Width="300" SelectedValuePath="Key" DisplayMemberPath="Value" />
+                <ComboBox Name="cbPlayerOType" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Width="300" SelectedValuePath="Key" DisplayMemberPath="Value" SelectionChanged="cbPlayerOType_SelectionChanged" />
 
+                <TextBlock Text="Difficulty: " Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" Margin="0,0,5,0" />
+
+                <Slider Name="slPlayerODifficulty" Minimum="1" Maximum="1"  Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" Width="300" VerticalAlignment="Top" TickPlacement="BottomRight" Interval="1" IsSnapToTickEnabled="True" />
+            
             </Grid>
         </GroupBox>
 
@@ -86,7 +95,7 @@
 
                 <TextBlock Text="Games to Simulate: " Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" Margin="0,0,5,0" />
 
-                <TextBox Text="1000" Name="tbGamesToSimulate" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" Width="300" GotFocus="TextBoxSelectAll" />
+                <TextBox Text="1000" Name="tbGamesToSimulate" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" Width="200" GotFocus="TextBoxSelectAll" />
 
             </Grid>
         </GroupBox>

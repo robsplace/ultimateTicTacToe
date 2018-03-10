@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using UltimateTicTacToe.Core.Interfaces;
 
 namespace UltimateTicTacToe
 {
@@ -21,13 +22,13 @@ namespace UltimateTicTacToe
     {
         public string PlayerXName { get; private set; }
         public string PlayerOName { get; private set; }
-        public Type PlayerXType { get; private set; }
-        public Type PlayerOType { get; private set; }
+        public IGameAi PlayerX { get; private set; } = null;
+        public IGameAi PlayerO { get; private set; } = null;
         public uint? NumSimulations { get; private set; }
 
         private List<Type> _pluginTypes = new List<Type>();
 
-        public NewGameDialog(List<Type> pluginTypes, string playerXName, string playerOName, Type playerXType, Type playerOType, uint? numSimulations = null)
+        public NewGameDialog(List<Type> pluginTypes, string playerXName, string playerOName, Type playerXType, Type playerOType, int playerXDifficulty, int playerODifficulty, uint? numSimulations = null)
         {
             InitializeComponent();
 
@@ -48,6 +49,12 @@ namespace UltimateTicTacToe
 
             cbPlayerXType.SelectedValue = playerXType;
             cbPlayerOType.SelectedValue = playerOType;
+
+            cbPlayerXType_SelectionChanged(null, null);
+            cbPlayerOType_SelectionChanged(null, null);
+
+            slPlayerXDifficulty.Value = playerXDifficulty;
+            slPlayerODifficulty.Value = playerODifficulty;
 
             tbPlayerXName.Text = playerXName;
             tbPlayerOName.Text = playerOName;
@@ -72,12 +79,15 @@ namespace UltimateTicTacToe
                 return;
             }
 
-            PlayerXType = cbPlayerXType.SelectedValue as Type;
-            PlayerOType = cbPlayerOType.SelectedValue as Type;
+            if (PlayerX != null)
+                PlayerX.Difficulty = (int)slPlayerXDifficulty.Value;
+
+            if (PlayerO != null)
+                PlayerO.Difficulty = (int)slPlayerODifficulty.Value;
 
             if (chkSimulate.IsChecked == true)
             {
-                if (PlayerXType == null || PlayerOType == null)
+                if (PlayerX == null || PlayerO == null)
                 {
                     MessageBox.Show("Cannot use human players in simulations.");
                     return;
@@ -119,6 +129,22 @@ namespace UltimateTicTacToe
         private void chkSimulate_Unchecked(object sender, RoutedEventArgs e)
         {
             gbSimOptions.IsEnabled = false;
+        }
+
+        private void cbPlayerXType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var playerType = cbPlayerXType.SelectedValue as Type;
+            PlayerX = playerType == null ? null : (IGameAi)Activator.CreateInstance(playerType);
+            slPlayerXDifficulty.Minimum = PlayerX?.MinDifficulty ?? 1;
+            slPlayerXDifficulty.Maximum = PlayerX?.MaxDifficulty ?? 1;
+        }
+
+        private void cbPlayerOType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var playerType = cbPlayerOType.SelectedValue as Type;
+            PlayerO = playerType == null ? null : (IGameAi)Activator.CreateInstance(playerType);
+            slPlayerODifficulty.Minimum = PlayerO?.MinDifficulty ?? 1;
+            slPlayerODifficulty.Maximum = PlayerO?.MaxDifficulty ?? 1;
         }
     }
 }
