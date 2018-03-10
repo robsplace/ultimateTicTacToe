@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using UltimateTicTacToe.Core;
 using UltimateTicTacToe.Core.Entities;
@@ -27,6 +28,8 @@ namespace UltimateTicTacToe.Ai
             int bestScore = Int32.MinValue;
             List<Tuple<int, int, int, int>> bestResults = new List<Tuple<int, int, int, int>>();
             var children = new Dictionary<Game, Tuple<int, int, int, int>>();
+            var threads = new List<Thread>();
+            var results = new List<Tuple<int, int, int, int, int>>();
 
             for (int i = 0; i < 3; i++)
             {
@@ -49,17 +52,32 @@ namespace UltimateTicTacToe.Ai
 
             foreach (var child in children.Keys)
             {
-                var bestCaseScore = GetMinimax(child, game.CurrentPlayer);
+                var thread = new Thread(() =>
+                {
+                    results.Add(new Tuple<int, int, int, int, int>(children[child].Item1, children[child].Item2, children[child].Item3, children[child].Item4, GetMinimax(child, game.CurrentPlayer)));
+                });
+                thread.Start();
+                threads.Add(thread);
+            }
+
+            foreach (var thread in threads)
+            {
+                thread.Join();
+            }
+
+            foreach (var result in results)
+            {
+                var bestCaseScore = result.Item5;
 
                 if (bestCaseScore > bestScore)
                 {
                     bestResults.Clear();
-                    bestResults.Add(children[child]);
+                    bestResults.Add(new Tuple<int, int, int, int>(result.Item1, result.Item2, result.Item3, result.Item4));
                     bestScore = bestCaseScore;
                 }
                 else if (bestCaseScore == bestScore)
                 {
-                    bestResults.Add(children[child]);
+                    bestResults.Add(new Tuple<int, int, int, int>(result.Item1, result.Item2, result.Item3, result.Item4));
                 }
             }
 

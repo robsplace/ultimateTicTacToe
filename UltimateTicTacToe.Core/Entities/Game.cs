@@ -12,7 +12,7 @@ namespace UltimateTicTacToe.Core.Entities
 
         public Players?[,,,] Board { get; } = new Players?[3, 3, 3, 3];
 
-        public Tuple<int, int> LastPlay { get; set; } = null;
+        public Tuple<int, int, int, int> LastPlay { get; set; } = null;
 
         public object Clone()
         {
@@ -23,7 +23,7 @@ namespace UltimateTicTacToe.Core.Entities
 
             if (this.LastPlay != null)
             {
-                game.LastPlay = new Tuple<int, int>(this.LastPlay.Item1, this.LastPlay.Item2);
+                game.LastPlay = new Tuple<int, int, int, int>(this.LastPlay.Item1, this.LastPlay.Item2, this.LastPlay.Item3, this.LastPlay.Item4);
             }
 
             for (int i = 0; i < 3; i++)

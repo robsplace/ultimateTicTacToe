@@ -43,7 +43,7 @@ namespace UltimateTicTacToe.Core
             }
 
             game.Board[boardXIndex, boardYIndex, pickXIndex, pickYIndex] = game.CurrentPlayer;
-            game.LastPlay = new Tuple<int, int>(pickXIndex, pickYIndex);
+            game.LastPlay = new Tuple<int, int, int, int>(boardXIndex, boardYIndex, pickXIndex, pickYIndex);
             game.CurrentPlayer = game.CurrentPlayer == Players.X ? Players.O : Players.X;
         }
 
@@ -68,8 +68,8 @@ namespace UltimateTicTacToe.Core
             }
 
             return (game.LastPlay == null
-                    || (game.LastPlay.Item1 == boardXIndex && game.LastPlay.Item2 == boardYIndex)
-                    || GetBoardStatus(game, game.LastPlay.Item1, game.LastPlay.Item2).HasValue)
+                    || (game.LastPlay.Item3 == boardXIndex && game.LastPlay.Item4 == boardYIndex)
+                    || GetBoardStatus(game, game.LastPlay.Item3, game.LastPlay.Item4).HasValue)
                 && !GetBoardStatus(game, boardXIndex, boardYIndex).HasValue
                 && game.Board[boardXIndex, boardYIndex, pickXIndex, pickYIndex] == null;
         }

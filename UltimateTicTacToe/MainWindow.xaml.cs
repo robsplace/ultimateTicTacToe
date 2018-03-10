@@ -186,11 +186,11 @@ namespace UltimateTicTacToe
 
                 // if the next play is in a forced block
                 if (_game.LastPlay != null
-                    && _game.LastPlay.Item1 >= 0 && _game.LastPlay.Item1 < 3
-                    && _game.LastPlay.Item2 >= 0 && _game.LastPlay.Item2 < 3
-                    && !GameMaster.GetBoardStatus(_game, _game.LastPlay.Item1, _game.LastPlay.Item2).HasValue)
+                    && _game.LastPlay.Item3 >= 0 && _game.LastPlay.Item3 < 3
+                    && _game.LastPlay.Item4 >= 0 && _game.LastPlay.Item4 < 3
+                    && !GameMaster.GetBoardStatus(_game, _game.LastPlay.Item3, _game.LastPlay.Item4).HasValue)
                 {
-                    forcedBoard = _game.LastPlay;
+                    forcedBoard = new Tuple<int, int>(_game.LastPlay.Item3, _game.LastPlay.Item4);
                 }
 
                 for (int i = 0; i < 3; i++)
@@ -212,6 +212,16 @@ namespace UltimateTicTacToe
                                     _boardResults[i, j].Text = "O";
                                     break;
                             }
+
+                            if (_game.LastPlay.Item1 == i && _game.LastPlay.Item2 == j)
+                            {
+                                _boardResults[i, j].Foreground = Brushes.BlueViolet;
+                            }
+                            else
+                            {
+                                _boardResults[i, j].Foreground = Brushes.Black;
+                            }
+
                             _boardResults[i, j].Visibility = Visibility.Visible;
                             _boardGridViews[i, j].Opacity = 0.15;
                         }
@@ -228,6 +238,15 @@ namespace UltimateTicTacToe
                             {
                                 ((_gameButtons[i, j, k, l].Content as Viewbox).Child as TextBlock).Text = _game.Board[i, j, k, l]?.ToString() ?? string.Empty;
                                 _gameButtons[i, j, k, l].IsEnabled = !_game.Board[i, j, k, l].HasValue;
+
+                                if (_game.LastPlay?.Item1 == i && _game.LastPlay?.Item2 == j && _game.LastPlay?.Item3 == k && _game.LastPlay?.Item4 == l)
+                                {
+                                    ((_gameButtons[i, j, k, l].Content as Viewbox).Child as TextBlock).Foreground = Brushes.BlueViolet;
+                                }
+                                else
+                                {
+                                    ((_gameButtons[i, j, k, l].Content as Viewbox).Child as TextBlock).Foreground = Brushes.Black;
+                                }
                             }
                         }
                     }
