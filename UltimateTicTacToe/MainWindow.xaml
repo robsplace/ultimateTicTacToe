@@ -1,9 +1,8 @@
 ﻿<Window x:Class="UltimateTicTacToe.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:UltimateTicTacToe"
         mc:Ignorable="d"
         
         Title="Ultimate Tic Tac Toe" Height="500" Width="400" MinHeight="500" MinWidth="400" Icon="ultimatetictactoe.ico" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
@@ -20,7 +19,7 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <Button Grid.Row="0" Grid.Column="0" Content="New Game" Width="100" Click="btnNewGame_Click" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3,0,0,0" />
+        <Button Grid.Row="0" Grid.Column="0" Content="New Game" Width="100" Click="NewGame" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3,0,0,0" />
         <Button Name="RestartGameButton" Grid.Row="0" Grid.Column="1" Content="Restart Game" Width="100" Click="RestartGame" HorizontalAlignment="Center" VerticalAlignment="Center" IsEnabled="False" />
         <Button Grid.Row="0" Grid.Column="2" Content="Options" Width="100" Click="ModifyOptions" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,3,0" />
 
@@ -71,47 +70,47 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <Button Name="btn00" Grid.Row="0" Grid.Column="0" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn00" Grid.Row="0" Grid.Column="0" Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn01" Grid.Row="0" Grid.Column="1" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn01" Grid.Row="0" Grid.Column="1" Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn02" Grid.Row="0" Grid.Column="2" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn02" Grid.Row="0" Grid.Column="2" Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn10" Grid.Row="1" Grid.Column="0" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn10" Grid.Row="1" Grid.Column="0" Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn11" Grid.Row="1" Grid.Column="1" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn11" Grid.Row="1" Grid.Column="1" Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn12" Grid.Row="1" Grid.Column="2" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn12" Grid.Row="1" Grid.Column="2" Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn20" Grid.Row="2" Grid.Column="0" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn20" Grid.Row="2" Grid.Column="0" Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn21" Grid.Row="2" Grid.Column="1" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn21" Grid.Row="2" Grid.Column="1" Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn22" Grid.Row="2" Grid.Column="2" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn22" Grid.Row="2" Grid.Column="2" Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
@@ -133,47 +132,47 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <Button Name="btn03" Grid.Row="0" Grid.Column="0" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn03" Grid.Row="0" Grid.Column="0" Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn04" Grid.Row="0" Grid.Column="1" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn04" Grid.Row="0" Grid.Column="1" Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn05" Grid.Row="0" Grid.Column="2" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn05" Grid.Row="0" Grid.Column="2" Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn13" Grid.Row="1" Grid.Column="0" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn13" Grid.Row="1" Grid.Column="0" Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn14" Grid.Row="1" Grid.Column="1" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn14" Grid.Row="1" Grid.Column="1" Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn15" Grid.Row="1" Grid.Column="2" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn15" Grid.Row="1" Grid.Column="2" Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn23" Grid.Row="2" Grid.Column="0" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn23" Grid.Row="2" Grid.Column="0" Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn24" Grid.Row="2" Grid.Column="1" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn24" Grid.Row="2" Grid.Column="1" Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn25" Grid.Row="2" Grid.Column="2" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn25" Grid.Row="2" Grid.Column="2" Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
@@ -195,47 +194,47 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <Button Name="btn06" Grid.Row="0" Grid.Column="0" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn06" Grid.Row="0" Grid.Column="0" Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn07" Grid.Row="0" Grid.Column="1" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn07" Grid.Row="0" Grid.Column="1" Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn08" Grid.Row="0" Grid.Column="2" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn08" Grid.Row="0" Grid.Column="2" Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn16" Grid.Row="1" Grid.Column="0" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn16" Grid.Row="1" Grid.Column="0" Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn17" Grid.Row="1" Grid.Column="1" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn17" Grid.Row="1" Grid.Column="1" Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn18" Grid.Row="1" Grid.Column="2" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn18" Grid.Row="1" Grid.Column="2" Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn26" Grid.Row="2" Grid.Column="0" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn26" Grid.Row="2" Grid.Column="0" Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn27" Grid.Row="2" Grid.Column="1" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn27" Grid.Row="2" Grid.Column="1" Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn28" Grid.Row="2" Grid.Column="2" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn28" Grid.Row="2" Grid.Column="2" Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
@@ -257,47 +256,47 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <Button Name="btn30" Grid.Row="0" Grid.Column="0" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn30" Grid.Row="0" Grid.Column="0" Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn31" Grid.Row="0" Grid.Column="1" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn31" Grid.Row="0" Grid.Column="1" Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn32" Grid.Row="0" Grid.Column="2" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn32" Grid.Row="0" Grid.Column="2" Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn40" Grid.Row="1" Grid.Column="0" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn40" Grid.Row="1" Grid.Column="0" Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn41" Grid.Row="1" Grid.Column="1" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn41" Grid.Row="1" Grid.Column="1" Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn42" Grid.Row="1" Grid.Column="2" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn42" Grid.Row="1" Grid.Column="2" Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn50" Grid.Row="2" Grid.Column="0" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn50" Grid.Row="2" Grid.Column="0" Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn51" Grid.Row="2" Grid.Column="1" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn51" Grid.Row="2" Grid.Column="1" Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn52" Grid.Row="2" Grid.Column="2" Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn52" Grid.Row="2" Grid.Column="2" Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
@@ -319,47 +318,47 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <Button Name="btn33" Grid.Row="0" Grid.Column="0"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn33" Grid.Row="0" Grid.Column="0"  Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn34" Grid.Row="0" Grid.Column="1"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn34" Grid.Row="0" Grid.Column="1"  Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn35" Grid.Row="0" Grid.Column="2"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn35" Grid.Row="0" Grid.Column="2"  Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn43" Grid.Row="1" Grid.Column="0"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn43" Grid.Row="1" Grid.Column="0"  Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn44" Grid.Row="1" Grid.Column="1"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn44" Grid.Row="1" Grid.Column="1"  Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn45" Grid.Row="1" Grid.Column="2"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn45" Grid.Row="1" Grid.Column="2"  Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn53" Grid.Row="2" Grid.Column="0"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn53" Grid.Row="2" Grid.Column="0"  Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn54" Grid.Row="2" Grid.Column="1"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn54" Grid.Row="2" Grid.Column="1"  Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn55" Grid.Row="2" Grid.Column="2"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn55" Grid.Row="2" Grid.Column="2"  Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
@@ -381,47 +380,47 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <Button Name="btn36" Grid.Row="0" Grid.Column="0"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn36" Grid.Row="0" Grid.Column="0"  Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn37" Grid.Row="0" Grid.Column="1"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn37" Grid.Row="0" Grid.Column="1"  Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn38" Grid.Row="0" Grid.Column="2"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn38" Grid.Row="0" Grid.Column="2"  Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn46" Grid.Row="1" Grid.Column="0"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn46" Grid.Row="1" Grid.Column="0"  Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn47" Grid.Row="1" Grid.Column="1"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn47" Grid.Row="1" Grid.Column="1"  Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn48" Grid.Row="1" Grid.Column="2"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn48" Grid.Row="1" Grid.Column="2"  Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn56" Grid.Row="2" Grid.Column="0"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn56" Grid.Row="2" Grid.Column="0"  Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn57" Grid.Row="2" Grid.Column="1"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn57" Grid.Row="2" Grid.Column="1"  Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn58" Grid.Row="2" Grid.Column="2"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn58" Grid.Row="2" Grid.Column="2"  Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
@@ -443,47 +442,47 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <Button Name="btn60" Grid.Row="0" Grid.Column="0"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn60" Grid.Row="0" Grid.Column="0"  Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn61" Grid.Row="0" Grid.Column="1"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn61" Grid.Row="0" Grid.Column="1"  Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn62" Grid.Row="0" Grid.Column="2"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn62" Grid.Row="0" Grid.Column="2"  Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn70" Grid.Row="1" Grid.Column="0"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn70" Grid.Row="1" Grid.Column="0"  Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn71" Grid.Row="1" Grid.Column="1"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn71" Grid.Row="1" Grid.Column="1"  Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn72" Grid.Row="1" Grid.Column="2"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn72" Grid.Row="1" Grid.Column="2"  Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn80" Grid.Row="2" Grid.Column="0"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn80" Grid.Row="2" Grid.Column="0"  Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn81" Grid.Row="2" Grid.Column="1"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn81" Grid.Row="2" Grid.Column="1"  Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn82" Grid.Row="2" Grid.Column="2"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn82" Grid.Row="2" Grid.Column="2"  Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
@@ -505,47 +504,47 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <Button Name="btn63" Grid.Row="0" Grid.Column="0"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn63" Grid.Row="0" Grid.Column="0"  Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn64" Grid.Row="0" Grid.Column="1"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn64" Grid.Row="0" Grid.Column="1"  Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn65" Grid.Row="0" Grid.Column="2"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn65" Grid.Row="0" Grid.Column="2"  Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn73" Grid.Row="1" Grid.Column="0"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn73" Grid.Row="1" Grid.Column="0"  Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn74" Grid.Row="1" Grid.Column="1"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn74" Grid.Row="1" Grid.Column="1"  Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn75" Grid.Row="1" Grid.Column="2"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn75" Grid.Row="1" Grid.Column="2"  Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn83" Grid.Row="2" Grid.Column="0"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn83" Grid.Row="2" Grid.Column="0"  Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn84" Grid.Row="2" Grid.Column="1"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn84" Grid.Row="2" Grid.Column="1"  Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn85" Grid.Row="2" Grid.Column="2"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn85" Grid.Row="2" Grid.Column="2"  Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
@@ -567,47 +566,47 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <Button Name="btn66" Grid.Row="0" Grid.Column="0"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn66" Grid.Row="0" Grid.Column="0"  Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn67" Grid.Row="0" Grid.Column="1"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn67" Grid.Row="0" Grid.Column="1"  Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn68" Grid.Row="0" Grid.Column="2"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn68" Grid.Row="0" Grid.Column="2"  Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn76" Grid.Row="1" Grid.Column="0"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn76" Grid.Row="1" Grid.Column="0"  Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn77" Grid.Row="1" Grid.Column="1"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn77" Grid.Row="1" Grid.Column="1"  Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn78" Grid.Row="1" Grid.Column="2"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn78" Grid.Row="1" Grid.Column="2"  Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn86" Grid.Row="2" Grid.Column="0"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn86" Grid.Row="2" Grid.Column="0"  Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn87" Grid.Row="2" Grid.Column="1"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn87" Grid.Row="2" Grid.Column="1"  Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>
                 </Button>
-                <Button Name="btn88" Grid.Row="2" Grid.Column="2"  Margin="1" Click="btn_Click" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave">
+                <Button Name="btn88" Grid.Row="2" Grid.Column="2"  Margin="1" Click="UpdateBoard" MouseEnter="HighlightOption" MouseLeave="LowlightOption">
                     <Viewbox Stretch="Fill">
                         <TextBlock />
                     </Viewbox>

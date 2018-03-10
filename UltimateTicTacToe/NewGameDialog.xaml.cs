@@ -1,16 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using UltimateTicTacToe.Core.Interfaces;
 
 namespace UltimateTicTacToe
@@ -50,8 +41,8 @@ namespace UltimateTicTacToe
             cbPlayerXType.SelectedValue = playerXType;
             cbPlayerOType.SelectedValue = playerOType;
 
-            cbPlayerXType_SelectionChanged(null, null);
-            cbPlayerOType_SelectionChanged(null, null);
+            UpdatePlayerXDifficultyOptions(null, null);
+            UpdatePlayerODifficultyOptions(null, null);
 
             slPlayerXDifficulty.Value = playerXDifficulty;
             slPlayerODifficulty.Value = playerODifficulty;
@@ -121,17 +112,17 @@ namespace UltimateTicTacToe
             (sender as TextBox).SelectAll();
         }
 
-        private void chkSimulate_Checked(object sender, RoutedEventArgs e)
+        private void EnableSimulationOptions(object sender, RoutedEventArgs e)
         {
             gbSimOptions.IsEnabled = true;
         }
 
-        private void chkSimulate_Unchecked(object sender, RoutedEventArgs e)
+        private void DisableSimulationOptions(object sender, RoutedEventArgs e)
         {
             gbSimOptions.IsEnabled = false;
         }
 
-        private void cbPlayerXType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void UpdatePlayerXDifficultyOptions(object sender, SelectionChangedEventArgs e)
         {
             var playerType = cbPlayerXType.SelectedValue as Type;
             PlayerX = playerType == null ? null : (IGameAi)Activator.CreateInstance(playerType);
@@ -139,7 +130,7 @@ namespace UltimateTicTacToe
             slPlayerXDifficulty.Maximum = PlayerX?.MaxDifficulty ?? 1;
         }
 
-        private void cbPlayerOType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void UpdatePlayerODifficultyOptions(object sender, SelectionChangedEventArgs e)
         {
             var playerType = cbPlayerOType.SelectedValue as Type;
             PlayerO = playerType == null ? null : (IGameAi)Activator.CreateInstance(playerType);

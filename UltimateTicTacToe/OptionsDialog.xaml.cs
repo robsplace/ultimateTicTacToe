@@ -1,18 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using UltimateTicTacToe.Properties;
+﻿using System.Windows;
 using System.Windows.Forms;
+using UltimateTicTacToe.Properties;
 
 namespace UltimateTicTacToe
 {
@@ -31,17 +19,15 @@ namespace UltimateTicTacToe
 
         private void OkayButton_Click(object sender, RoutedEventArgs e)
         {
-            int minAiTime;
-            if (!int.TryParse(tbMinAiTime.Text, out minAiTime)
+            if (!int.TryParse(tbMinAiTime.Text, out int minAiTime)
                 || minAiTime < 10
                 || minAiTime > 10000)
             {
                 System.Windows.MessageBox.Show("Minimum AI Time must be a value between 10 and 10000");
                 return;
             }
-
-            int maxAiTime;
-            if (!int.TryParse(tbMaxAiTime.Text, out maxAiTime)
+            
+            if (!int.TryParse(tbMaxAiTime.Text, out int maxAiTime)
                 || maxAiTime <= minAiTime
                 || maxAiTime > 600000)
             {

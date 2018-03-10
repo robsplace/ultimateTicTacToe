@@ -1,20 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using UltimateTicTacToe.Core;
 using UltimateTicTacToe.Core.Entities;
 using UltimateTicTacToe.Core.Interfaces;
@@ -41,7 +34,7 @@ namespace UltimateTicTacToe
             RefreshPlugins();
         }
 
-        private async void btnNewGame_Click(object sender, RoutedEventArgs e)
+        private async void NewGame(object sender, RoutedEventArgs e)
         {
             NewGameDialog ngd = new NewGameDialog(_pluginTypes, txtPlayerX.Text, txtPlayerO.Text, _playerAis[Players.X]?.GetType(), _playerAis[Players.O]?.GetType(), _playerAis[Players.X]?.Difficulty ?? 1, _playerAis[Players.O]?.Difficulty ?? 1, NumSimulations);
             if (ngd.ShowDialog() == true) // this looks stupid but easy way to check for truthy since ShowDialog returns bool?
@@ -488,7 +481,7 @@ namespace UltimateTicTacToe
             await UpdateBoard();
         }
 
-        private async void btn_Click(object sender, RoutedEventArgs e)
+        private async void UpdateBoard(object sender, RoutedEventArgs e)
         {
             var row = Int32.Parse(((Button)sender).Name.Substring(3, 1));
             var col = Int32.Parse(((Button)sender).Name.Substring(4, 1));
@@ -496,7 +489,7 @@ namespace UltimateTicTacToe
             await UpdateBoard();
         }
 
-        private void btn_MouseLeave(object sender, MouseEventArgs e)
+        private void LowlightOption(object sender, MouseEventArgs e)
         {
             var btn = sender as Button;
             if (btn.IsEnabled)
@@ -505,7 +498,7 @@ namespace UltimateTicTacToe
             }
         }
 
-        private void btn_MouseEnter(object sender, MouseEventArgs e)
+        private void HighlightOption(object sender, MouseEventArgs e)
         {
             var btn = sender as Button;
             if (btn.IsEnabled
