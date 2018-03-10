@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UltimateTicTacToe.Core;
+﻿using UltimateTicTacToe.Core;
 using UltimateTicTacToe.Core.Entities;
-using UltimateTicTacToe.Core.Interfaces;
 
 namespace UltimateTicTacToe.Ai
 {

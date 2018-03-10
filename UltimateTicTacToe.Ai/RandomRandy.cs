@@ -1,5 +1,4 @@
 ﻿using System;
-using UltimateTicTacToe.Core;
 using UltimateTicTacToe.Core.Entities;
 using UltimateTicTacToe.Core.Interfaces;
 
