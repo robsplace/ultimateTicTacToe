@@ -12,9 +12,9 @@ namespace UltimateTicTacToe.Ai
 {
     abstract public class Minimax : IGameAi
     {
-        public int MinDifficulty => 1;
+        abstract public int MinDifficulty { get; }
 
-        public int MaxDifficulty => 6;
+        abstract public int MaxDifficulty { get; }
 
         public int Difficulty { get; set; }
 
