@@ -12,9 +12,7 @@ namespace UltimateTicTacToe.Ai
     public class MinimaxMandy : Minimax
     {
         public override int MinDifficulty => 1;
-
         public override int MaxDifficulty => 6;
-
         protected override int MAXIMUM_UTILITY => 100;
         protected override int MINIMUM_UTILITY => -100;
         
